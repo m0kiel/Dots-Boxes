@@ -10,13 +10,8 @@ public class Singleton<T> : MonoBehaviour
         {
             if (_instance == null)
             {
-                var objs = FindFirstObjectByType(typeof(T)) as T[];
-                if (objs.Length > 0)
-                    _instance = objs[0];
-                if (objs.Length > 1)
-                {
-                    Debug.LogError("There is more than one " + typeof(T).Name + " in the scene.");
-                }
+                _instance = FindFirstObjectByType(typeof(T)) as T;
+
                 if (_instance == null)
                 {
                     GameObject obj = new GameObject();

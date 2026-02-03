@@ -22,9 +22,10 @@ public class SquareTile : MonoBehaviour
         
     }
 
-    public void CompleteSquare()
+    public void CompleteSquare(Color teamColor)
     {
-
+        Debug.Log("COMPLETED SQUARE");
+        GetComponent<SpriteRenderer>().color = teamColor; // Green
     }    
 
     public void AddSquareLine(SquareLineSide key, SquareLine line)
@@ -44,7 +45,7 @@ public class SquareTile : MonoBehaviour
                 counter--;
             }
         }
-
+        Debug.Log(counter);
         return counter;
     }
 
@@ -74,5 +75,16 @@ public class SquareTile : MonoBehaviour
         }
 
         Debug.Log(logMessage);
+    }
+
+    public void SetOccupiedSide(SquareLine line, bool state)
+    {
+        foreach (var lines in squareLineSides)
+        {
+            if (lines.Value == line)
+            {
+                squareLineSidesOccupied[lines.Key] = state;
+            }
+        }
     }
 }

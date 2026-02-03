@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 public enum TeamInteraction { BLUE = 1, RED = 2}
 public enum LineOwner { NONE = 0, BLUE = 1, RED = 2 }
 
-public class SquareLine : MonoBehaviour, IPointerClickHandler
+public class SquareLine : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] List<SquareTile> squareTiles = new();
     [SerializeField] SquareLineSide side;
@@ -28,25 +28,31 @@ public class SquareLine : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        ToggleLine(TeamInteraction.BLUE);
+       
+        ToggleLine((TeamInteraction)TurnManager.Instance.CurrentTurn);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (owner != LineOwner.NONE) { return; }
+
+        ChangeSpriteColorAlpha(0);
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (owner != LineOwner.NONE) { return; }
+        ChangeSpriteColorAlpha(40);
     }
 
     public void ToggleLine(TeamInteraction teamInteraction)
     {
-        Debug.Log("TOGGLE");
-
-        for (int i = 0; i < squareTiles.Count; i++)
-        {
-            squareTiles[i].gameObject.SetActive(false);
-        }
-
-        return;
         if (GameManager.Instance.CurrentGameMode == GameMode.IA)
         {
             if (TurnManager.Instance.CurrentTurn != TeamTurn.BLUE)
             {
                 Debug.Log("Not Your Turn");
-                return;
+                //return;
             }
         }
 
@@ -70,27 +76,31 @@ public class SquareLine : MonoBehaviour, IPointerClickHandler
                     break;
                 }
             case LineOwner.BLUE:
-                {
-                    
-                    break;
-                }
             case LineOwner.RED:
                 {
-                    break;
+                    squareTiles.ForEach(tile => { tile.SetOccupiedSide(this, false); });
+                    return;
                 }
         }
+        ChageSpriteTeamColor((TeamInteraction)TurnManager.Instance.CurrentTurn);
+
+        squareTiles.ForEach(tile => { tile.SetOccupiedSide(this, true); } );
+        UpdateSquareTile((LineOwner)teamInteraction);
     }
 
-    public void UpdateSquareTile()
+    public void UpdateSquareTile(LineOwner player)
     {
         for (int i = 0; i < squareTiles.Count; i++) 
         {
             if (squareTiles[i].GetNumRemainingLineSides() == 0)
             {
                 isSquareCompleted = true;
-                squareTiles[i].CompleteSquare();
+                squareTiles[i].CompleteSquare(GetComponent<SpriteRenderer>().color);
+                ScoreManager.Instance.AddPoint(player);
+                return;
             }
         }
+        TurnManager.Instance.ChangeTurn();
     }
 
     public void AddSquareTile(SquareTile tile)
@@ -103,4 +113,21 @@ public class SquareLine : MonoBehaviour, IPointerClickHandler
 
     public List<SquareTile> GetSquareTiles() 
     { return squareTiles; }
+
+
+    public void ChageSpriteTeamColor(TeamInteraction team)
+    {
+        Color teamColor;
+        if (team == TeamInteraction.BLUE) 
+        { teamColor = new Color(0, 0, 255, 255); }
+
+        else // Red 
+        { teamColor = new Color(255, 0, 0, 255); }
+
+        GetComponent<SpriteRenderer>().color = teamColor;
+    }
+    public void ChangeSpriteColorAlpha(int amount)
+    {
+        GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, amount);
+    }
 }

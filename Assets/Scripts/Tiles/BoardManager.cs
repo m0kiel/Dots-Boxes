@@ -15,12 +15,6 @@ public class BoardManager : MonoBehaviour
         LinkBoard();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void CreateBoard(int width, int height)
     {
         float squareSize = 1.2f;
