@@ -12,7 +12,7 @@ public class GameManager : Singleton<GameManager>
     GameMode currentGameMode = GameMode.IA;
     public GameMode CurrentGameMode { get { return currentGameMode; } }
 
-    Vector2 boardSize = new(3,3);
+    Vector2 boardSize = new(6, 6);
     public Vector2 BoardSize { get { return boardSize; } }
     
     public void SetCurrentDifficulty(GameDifficulty difficulty)
