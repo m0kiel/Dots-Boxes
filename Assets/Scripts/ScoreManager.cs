@@ -19,4 +19,13 @@ public class ScoreManager : Singleton<ScoreManager>
         else if (player == LineOwner.RED) 
         { redTeamPoints++; }
     }
+
+    public void CheckEndGame()
+    {
+        int maxPoints = GameManager.Instance.GetMaxPoints();
+        if (blueTeamPoints + redTeamPoints < maxPoints) { return; }
+
+        Debug.Log("GAME ENDED: " + blueTeamPoints + " : " + redTeamPoints);
+        // End Game
+    }
 }

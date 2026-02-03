@@ -90,17 +90,24 @@ public class SquareLine : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
 
     public void UpdateSquareTile(LineOwner player)
     {
+        bool hasCompletedSquare = false;
         for (int i = 0; i < squareTiles.Count; i++) 
         {
             if (squareTiles[i].GetNumRemainingLineSides() == 0)
             {
                 isSquareCompleted = true;
                 squareTiles[i].CompleteSquare(GetComponent<SpriteRenderer>().color);
+
                 ScoreManager.Instance.AddPoint(player);
-                return;
+                ScoreManager.Instance.CheckEndGame();
+                hasCompletedSquare = true;
             }
         }
-        TurnManager.Instance.ChangeTurn();
+
+        if (!hasCompletedSquare)
+        {
+            TurnManager.Instance.ChangeTurn();
+        }
     }
 
     public void AddSquareTile(SquareTile tile)

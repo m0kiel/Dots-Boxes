@@ -11,20 +11,20 @@ public class BoardManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        CreateBoard(6,6);
+        CreateBoard(GameManager.Instance.BoardSize);
         LinkBoard();
     }
 
-    public void CreateBoard(int width, int height)
+    public void CreateBoard(Vector2 boardSize)
     {
         float squareSize = 1.2f;
         float squareScale = tilePrefabs[0].transform.localScale.x;
 
-        for (int y = 0; y < height; y++)
+        for (int y = 0; y < boardSize.y; y++)
         {
             List<GameObject> boardTiles = new();
 
-            for (int x = 0; x < width; x++)
+            for (int x = 0; x < boardSize.x; x++)
             {
                 GameObject tile;
 
@@ -90,12 +90,12 @@ public class BoardManager : MonoBehaviour
             }
         }
 
-        for (int y = 0; y < board.Count; y++)
-        {
-            for (int x = 0; x < board[0].Count; x++)
-            {
-                //board[y][x].GetComponentInChildren<SquareTile>().Debug_PrintStatus();
-            }
-        }
+        //for (int y = 0; y < board.Count; y++)
+        //{
+        //    for (int x = 0; x < board[0].Count; x++)
+        //    {
+        //        board[y][x].GetComponentInChildren<SquareTile>().Debug_PrintStatus();
+        //    }
+        //}
     }
 }

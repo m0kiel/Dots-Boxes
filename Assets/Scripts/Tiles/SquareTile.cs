@@ -24,7 +24,6 @@ public class SquareTile : MonoBehaviour
 
     public void CompleteSquare(Color teamColor)
     {
-        Debug.Log("COMPLETED SQUARE");
         GetComponent<SpriteRenderer>().color = teamColor; // Green
     }    
 
@@ -45,7 +44,6 @@ public class SquareTile : MonoBehaviour
                 counter--;
             }
         }
-        Debug.Log(counter);
         return counter;
     }
 
