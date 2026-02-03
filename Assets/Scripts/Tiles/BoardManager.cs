@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BoardManager : MonoBehaviour
+public class BoardManager : Singleton<BoardManager>
 {
     [SerializeField] List<GameObject> tilePrefabs = new();
 
@@ -10,14 +10,24 @@ public class BoardManager : MonoBehaviour
 
     float tileZoom = 3.5f;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
+    {
+        
+    }
+
+    public void InitBoard()
     {
         ChangeTileScale();
         CreateBoard();
         LinkBoard();
         MoveCameraToCenterBoard();
         ResetPrefabScale();
+    }    
+
+    public void DeleteBoard()
+    {
+        Destroy(board[0][0].transform.parent.gameObject);
+        board.Clear();
     }
 
     public void CreateBoard()
@@ -39,7 +49,7 @@ public class BoardManager : MonoBehaviour
 
                 if (x == 0 && y == 0) // Bottom Left Corner Tile
                 {
-                    tile = Instantiate(tilePrefabs[0], new Vector3(x*squareSize*squareScale, y * squareSize * squareScale, 0), Quaternion.identity, grid.transform);
+                    tile = Instantiate(tilePrefabs[0], new Vector3(x * squareSize * squareScale, y * squareSize * squareScale, 0), Quaternion.identity, grid.transform);
                 }
                 else if (y == 0) // Bottom Row Tiles
                 {
@@ -76,7 +86,7 @@ public class BoardManager : MonoBehaviour
                     lines[i].AddSquareTile(tile);
                 }
 
-                if (x== 0 && y == 0) { continue; } // First Pass
+                if (x == 0 && y == 0) { continue; } // First Pass
 
                 // Remaining Links
                 if (y == 0) // Bottom Row Tiles
@@ -86,7 +96,7 @@ public class BoardManager : MonoBehaviour
                 }
                 else if (x == 0) // Left Column Tiles
                 {
-                    tile.AddSquareLine(SquareLineSide.BOTTOM, board[y -1][x].GetComponentInChildren<SquareTile>().GetSquareLine(SquareLineSide.TOP));
+                    tile.AddSquareLine(SquareLineSide.BOTTOM, board[y - 1][x].GetComponentInChildren<SquareTile>().GetSquareLine(SquareLineSide.TOP));
                     tile.GetSquareLine(SquareLineSide.BOTTOM).AddSquareTile(tile);
                 }
                 else // Default Tiles
@@ -112,7 +122,7 @@ public class BoardManager : MonoBehaviour
     {
         Vector2 boardSize = GameManager.Instance.BoardSize;
         // Get Bigger Side
-        float newScale = Mathf.Max(boardSize.x, boardSize.y)/tileZoom;
+        float newScale = Mathf.Max(boardSize.x, boardSize.y) / tileZoom;
 
         foreach (GameObject tilePrefab in tilePrefabs)
         {
@@ -124,7 +134,7 @@ public class BoardManager : MonoBehaviour
     {
         foreach (GameObject tilePrefab in tilePrefabs)
         {
-            tilePrefab.transform.localScale = new(1,1,1);
+            tilePrefab.transform.localScale = new(1, 1, 1);
         }
     }
 
@@ -137,8 +147,8 @@ public class BoardManager : MonoBehaviour
         float squareSize = 1.2f;
         float squareScale = tilePrefabs[0].transform.localScale.x;
 
-        float displacementX = boardSize.x * squareScale * squareSize/2 - squareSize / 2 / newScale;
-        float displacementY = boardSize.y * squareScale * squareSize/2 - squareSize / 2 / newScale;
+        float displacementX = boardSize.x * squareScale * squareSize / 2 - squareSize / 2 / newScale;
+        float displacementY = boardSize.y * squareScale * squareSize / 2 - squareSize / 2 / newScale;
         Vector3 newPosition = new(displacementX, displacementY, -10);
 
         Camera.main.transform.position = newPosition;
