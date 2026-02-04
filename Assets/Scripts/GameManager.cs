@@ -4,6 +4,7 @@ using UnityEngine;
 public enum GameDifficulty { EASY, NORMAL, HARD }
 public enum GameMode { IA, FRIEND }
 
+public enum Team { NONE = 0, BLUE = 1, RED = 2 }
 public class GameManager : Singleton<GameManager>
 {
     GameDifficulty currentDifficulty;
@@ -24,5 +25,10 @@ public class GameManager : Singleton<GameManager>
     public int GetMaxPoints()
     {
         return (int)(boardSize.x * boardSize.y);
+    }
+
+    public void SetBoardSize(int width, int height)
+    {
+        boardSize = new(width, height);
     }
 }

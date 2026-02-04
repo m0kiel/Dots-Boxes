@@ -85,10 +85,10 @@ public class SquareLine : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
         ChageSpriteTeamColor((TeamInteraction)TurnManager.Instance.CurrentTurn);
 
         squareTiles.ForEach(tile => { tile.SetOccupiedSide(this, true); } );
-        UpdateSquareTile((LineOwner)teamInteraction);
+        UpdateSquareTile((Team)teamInteraction);
     }
 
-    public void UpdateSquareTile(LineOwner player)
+    public void UpdateSquareTile(Team player)
     {
         bool hasCompletedSquare = false;
         for (int i = 0; i < squareTiles.Count; i++) 
