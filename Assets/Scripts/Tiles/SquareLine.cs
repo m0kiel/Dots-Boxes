@@ -47,7 +47,7 @@ public class SquareLine : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
 
     public void ToggleLine(TeamInteraction teamInteraction)
     {
-        if (GameManager.Instance.CurrentGameMode == GameMode.IA)
+        if (GameManager.Instance.CurrentGameMode == GameMode.AI)
         {
             if (TurnManager.Instance.CurrentTurn != TeamTurn.BLUE)
             {
@@ -86,6 +86,11 @@ public class SquareLine : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
 
         squareTiles.ForEach(tile => { tile.SetOccupiedSide(this, true); } );
         UpdateSquareTile((Team)teamInteraction);
+
+        if (GameManager.Instance.CurrentGameMode == GameMode.AI && TurnManager.Instance.CurrentTurn == TeamTurn.RED)
+        {
+            VersusAI.Instance.PlaceLine();
+        }
     }
 
     public void UpdateSquareTile(Team player)

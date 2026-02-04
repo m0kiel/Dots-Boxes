@@ -8,7 +8,6 @@ public class UIScreenHelper : Singleton<UIScreenHelper>
     public void AddScreen(Screens key, UIScreen screen)
     {
         screens.Add(key, screen);
-        Debug.Log(key.ToString());
     }
 
     public UIScreen GetScreen(Screens key)

@@ -15,19 +15,21 @@ public class GameModeSelector : BaseScreen
 
 
         #region MainButtons
-        UtilitiesUI.GetComponentByName<Button>(mainButtons, "Confirm").onClick.AddListener(() =>
+        UtilitiesUI.GetComponentByName<Button>(mainButtons, "Friend").onClick.AddListener(() =>
         {
-            int boardWidth = (int)UtilitiesUI.GetComponentByName<Slider>(transform.Find("Sliders").gameObject, "BoardWidth").value;
-            int boardHeight = (int)UtilitiesUI.GetComponentByName<Slider>(transform.Find("Sliders").gameObject, "BoardHeight").value;
-            GameManager.Instance.SetBoardSize(boardWidth, boardHeight);
-
-            BoardManager.Instance.InitBoard();
-
-            ScoreManager.Instance.ResetGame();
-            TurnManager.Instance.ResetGame();
-
-            currentScreen.ChangeScreens(Screens.Game);
+            GameManager.Instance.SetCurrentGameMode(GameMode.FRIEND);
+            DefaultSettings();
         });
+
+        UtilitiesUI.GetComponentByName<Button>(mainButtons, "AI").onClick.AddListener(() =>
+        {
+            GameManager.Instance.SetCurrentGameMode(GameMode.AI);
+            DefaultSettings();
+            GameObject ai = new GameObject("AI");
+            ai.AddComponent<VersusAI>();
+            ai.GetComponent<VersusAI>().InitAI();
+        });
+
         UtilitiesUI.GetComponentByName<Button>(mainButtons, "Back").onClick.AddListener(() =>
         {
             currentScreen.ChangeScreens(Screens.MainMenu);
@@ -56,5 +58,29 @@ public class GameModeSelector : BaseScreen
     public override void OnGameObjectDisabled()
     {
 
+    }
+
+    private void DefaultSettings()
+    {
+        // Easier access and less Find() searches
+        GameManager gameManager = GameManager.Instance;
+        TurnManager turnManager = TurnManager.Instance;
+        ScoreManager scoreManager = ScoreManager.Instance;
+        BoardManager boardManager = BoardManager.Instance;
+
+        int boardWidth = (int)UtilitiesUI.GetComponentByName<Slider>(transform.Find("Sliders").gameObject, "BoardWidth").value;
+        int boardHeight = (int)UtilitiesUI.GetComponentByName<Slider>(transform.Find("Sliders").gameObject, "BoardHeight").value;
+
+        // Verify values arent from previous games
+        scoreManager.ResetScore();
+        turnManager.ResetTurn();
+        gameManager.ResetGame();
+
+        // Start Initializing variables
+        gameManager.SetBoardSize(boardWidth, boardHeight);
+        boardManager.InitBoard();
+        turnManager.StartTurn();
+
+        currentScreen.ChangeScreens(Screens.Game);
     }
 }

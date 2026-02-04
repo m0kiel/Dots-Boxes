@@ -47,6 +47,20 @@ public class SquareTile : MonoBehaviour
         return counter;
     }
 
+    public List<SquareLine> GetRemainingLineSides()
+    { 
+        List<SquareLine> remainingSides = new List<SquareLine>();
+
+        foreach (SquareLineSide lineSide in squareLineSidesOccupied.Keys)
+        {
+            if (squareLineSidesOccupied[lineSide] == false)
+            {
+                remainingSides.Add(squareLineSides[lineSide]);
+            }
+        }
+        return remainingSides;
+    }    
+
     public SquareLine GetSquareLine(SquareLineSide side)
     {
         return squareLineSides[side];
