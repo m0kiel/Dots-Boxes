@@ -18,6 +18,11 @@ public class GameScreen : BaseScreen
         UtilitiesUI.GetComponentByName<Button>(mainButtons, "GameOptions").onClick.AddListener(() =>
         {
             currentScreen.ChangeScreens(Screens.GameOptions);
+            GameObject grid = GameObject.Find("Grid");
+            for (int i = 0; i < grid.transform.childCount; i++)
+            {
+                grid.transform.GetChild(i).gameObject.SetActive(false);
+            }
         });
         #endregion
 

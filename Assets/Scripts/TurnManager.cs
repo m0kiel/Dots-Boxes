@@ -23,4 +23,9 @@ public class TurnManager : Singleton<TurnManager>
     {
         currentTurn = currentTurn == TeamTurn.BLUE ? TeamTurn.RED : TeamTurn.BLUE;
     }
+
+    public void ResetGame()
+    {
+        currentTurn = TeamTurn.BLUE;
+    }
 }

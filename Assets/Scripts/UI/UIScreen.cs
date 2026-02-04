@@ -2,10 +2,12 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Screens { MainMenu, Options, GameModeSelector, Game, GameOptions }
+public enum Screens { MainMenu, Options, GameModeSelector, Game, GameOptions, EndGame }
 public class UIScreen : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> elements = new();
+    [SerializeField] Screens thisScreenKey;
+
+    private List<GameObject> elements = new();
     private Dictionary<Screens, UIScreen> screenConections = new();
 
     [SerializeField] private List<Screens> screenKeys;
@@ -13,6 +15,7 @@ public class UIScreen : MonoBehaviour
     
     void Awake()
     {
+        UIScreenHelper.Instance.AddScreen(thisScreenKey, this);
         GetAllElements();
         SetScreenConnections();
     }

@@ -1,23 +1,48 @@
+using System;
 using JetBrains.Annotations;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ScoreManager : Singleton<ScoreManager>
 {
+    #region EVENTS
+    public static event EventHandler<ChangeTeamScoreDisplayEventArgs> ChangeTeamScoreDisplay;
+
+    public class ChangeTeamScoreDisplayEventArgs : EventArgs { public int score; public Team team; }
+
+    public static void InvokeChangeTeamScoreDisplay(GameObject sender, int scoreToSet, Team teamInteraction)
+    {
+        ChangeTeamScoreDisplay?.Invoke(sender, new ChangeTeamScoreDisplayEventArgs { score = scoreToSet, team = teamInteraction });
+    }
+
+    #endregion
+
     int blueTeamPoints = 0;
     int redTeamPoints = 0;
+
+    
 
     public void ResetGame()
     {
         blueTeamPoints = 0;
         redTeamPoints = 0;
+        InvokeChangeTeamScoreDisplay(gameObject, blueTeamPoints, Team.BLUE);
+        InvokeChangeTeamScoreDisplay(gameObject, redTeamPoints, Team.RED);
     }
 
-    public void AddPoint(LineOwner player)
+    public void AddPoint(Team player)
     {
-        if (player == LineOwner.BLUE) 
-        { blueTeamPoints++; }
-        else if (player == LineOwner.RED) 
-        { redTeamPoints++; }
+        if (player == Team.BLUE) 
+        { 
+            blueTeamPoints++;
+            InvokeChangeTeamScoreDisplay(gameObject, blueTeamPoints, Team.BLUE);
+        }
+        else if (player == Team.RED) 
+        { 
+            redTeamPoints++;
+            InvokeChangeTeamScoreDisplay(gameObject, redTeamPoints, Team.RED);
+        }
     }
 
     public void CheckEndGame()
@@ -26,6 +51,26 @@ public class ScoreManager : Singleton<ScoreManager>
         if (blueTeamPoints + redTeamPoints < maxPoints) { return; }
 
         Debug.Log("GAME ENDED: " + blueTeamPoints + " : " + redTeamPoints);
-        // End Game
+
+        UIScreenHelper.Instance.GetScreen(Screens.Game).ChangeScreens(Screens.EndGame);
     }
+    public Team GetWinner()
+    {
+        Team team = Team.NONE;
+        if (blueTeamPoints > redTeamPoints)
+        {
+            return Team.BLUE;
+        }
+        else if (blueTeamPoints < redTeamPoints)
+        {
+            return Team.RED;
+        }
+        else
+        {
+            return team;
+        }
+    }
+
+    public Vector2 GetTeamPoints()
+    { return new Vector2(blueTeamPoints, redTeamPoints);}    
 }

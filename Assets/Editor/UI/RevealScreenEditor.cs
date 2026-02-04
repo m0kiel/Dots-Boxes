@@ -22,7 +22,7 @@ public class RevealScreenEditor : Editor
             GameObject mainMenu = GameObject.Find("UI").gameObject;
             
 
-            for (int i = 1; i < mainMenu.transform.childCount; i++)
+            for (int i = 0; i < mainMenu.transform.childCount; i++)
             {
                 mainMenu.transform.GetChild(i).GetComponent<UIScreen>().HideScreenVisibilityEditor();
             }

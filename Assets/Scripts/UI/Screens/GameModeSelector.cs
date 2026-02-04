@@ -17,8 +17,16 @@ public class GameModeSelector : BaseScreen
         #region MainButtons
         UtilitiesUI.GetComponentByName<Button>(mainButtons, "Confirm").onClick.AddListener(() =>
         {
-            currentScreen.ChangeScreens(Screens.Game);
+            int boardWidth = (int)UtilitiesUI.GetComponentByName<Slider>(transform.Find("Sliders").gameObject, "BoardWidth").value;
+            int boardHeight = (int)UtilitiesUI.GetComponentByName<Slider>(transform.Find("Sliders").gameObject, "BoardHeight").value;
+            GameManager.Instance.SetBoardSize(boardWidth, boardHeight);
+
             BoardManager.Instance.InitBoard();
+
+            ScoreManager.Instance.ResetGame();
+            TurnManager.Instance.ResetGame();
+
+            currentScreen.ChangeScreens(Screens.Game);
         });
         UtilitiesUI.GetComponentByName<Button>(mainButtons, "Back").onClick.AddListener(() =>
         {

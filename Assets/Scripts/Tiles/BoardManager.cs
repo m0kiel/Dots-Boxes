@@ -36,7 +36,9 @@ public class BoardManager : Singleton<BoardManager>
         float squareSize = 1.2f;
         float squareScale = tilePrefabs[0].transform.localScale.x;
 
-        GameObject grid = new GameObject();
+        GameObject grid = GameObject.Find("Grid");
+        if (grid == null) { grid = new GameObject("Grid"); }
+
         grid.transform.position = Vector3.zero;
 
         for (int y = 0; y < boardSize.y; y++)
