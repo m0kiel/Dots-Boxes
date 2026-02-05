@@ -42,7 +42,7 @@ public class SquareLine : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (owner != LineOwner.NONE) { return; }
-        ChangeSpriteColorAlpha(40);
+        ChangeSpriteColorAlpha(0.4f);
     }
 
     public void ToggleLine(TeamInteraction teamInteraction)
@@ -85,8 +85,9 @@ public class SquareLine : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
         ChageSpriteTeamColor((TeamInteraction)TurnManager.Instance.CurrentTurn);
 
         squareTiles.ForEach(tile => { tile.SetOccupiedSide(this, true); } );
-        UpdateSquareTile((Team)teamInteraction);
 
+
+        UpdateSquareTile((Team)teamInteraction);
         if (GameManager.Instance.CurrentGameMode == GameMode.AI && TurnManager.Instance.CurrentTurn == TeamTurn.RED)
         {
             VersusAI.Instance.PlaceLine();
@@ -138,7 +139,7 @@ public class SquareLine : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
 
         GetComponent<SpriteRenderer>().color = teamColor;
     }
-    public void ChangeSpriteColorAlpha(int amount)
+    public void ChangeSpriteColorAlpha(float amount)
     {
         GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, amount);
     }

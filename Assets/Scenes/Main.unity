@@ -1186,9 +1186,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIScreen
   thisScreenKey: 5
-  screenKeys: 00000000
-  screens:
-  - {fileID: 1381956730}
+  uiScreensInfoList:
+  - screenKey: 0
+    screen: {fileID: 1381956730}
 --- !u!114 &354510172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2884,10 +2884,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIScreen
   thisScreenKey: 2
-  screenKeys: 0000000003000000
-  screens:
-  - {fileID: 1381956730}
-  - {fileID: 844563184}
+  uiScreensInfoList:
+  - screenKey: 0
+    screen: {fileID: 1381956730}
+  - screenKey: 3
+    screen: {fileID: 844563184}
 --- !u!1 &682920805
 GameObject:
   m_ObjectHideFlags: 0
@@ -3657,6 +3658,135 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 828128904}
   m_CullTransparentMesh: 1
+--- !u!1 &838537773
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 838537775}
+  - component: {fileID: 838537774}
+  m_Layer: 0
+  m_Name: Global AudioSource
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &838537774
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838537773}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &838537775
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838537773}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.05314, y: -0.58474, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &844563182
 GameObject:
   m_ObjectHideFlags: 0
@@ -3710,10 +3840,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIScreen
   thisScreenKey: 3
-  screenKeys: 0400000005000000
-  screens:
-  - {fileID: 1121982742}
-  - {fileID: 354510171}
+  uiScreensInfoList:
+  - screenKey: 4
+    screen: {fileID: 1121982742}
+  - screenKey: 5
+    screen: {fileID: 354510171}
 --- !u!222 &844563185
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4476,10 +4607,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIScreen
   thisScreenKey: 4
-  screenKeys: 0300000000000000
-  screens:
-  - {fileID: 844563184}
-  - {fileID: 1381956730}
+  uiScreensInfoList:
+  - screenKey: 3
+    screen: {fileID: 844563184}
+  - screenKey: 0
+    screen: {fileID: 1381956730}
 --- !u!222 &1121982745
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4824,9 +4956,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIScreen
   thisScreenKey: 1
-  screenKeys: 00000000
-  screens:
-  - {fileID: 1381956730}
+  uiScreensInfoList:
+  - screenKey: 0
+    screen: {fileID: 1381956730}
 --- !u!222 &1210816263
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5217,10 +5349,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIScreen
   thisScreenKey: 0
-  screenKeys: 0200000001000000
-  screens:
-  - {fileID: 664462942}
-  - {fileID: 1210816260}
+  uiScreensInfoList:
+  - screenKey: 1
+    screen: {fileID: 1210816260}
+  - screenKey: 2
+    screen: {fileID: 664462942}
 --- !u!114 &1381956731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6927,6 +7060,7 @@ GameObject:
   - component: {fileID: 1833739467}
   - component: {fileID: 1833739470}
   - component: {fileID: 1833739466}
+  - component: {fileID: 1833739471}
   m_Layer: 0
   m_Name: --[ Managers ]--
   m_TagString: Untagged
@@ -7002,6 +7136,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e188d27ed2417b341b247a30042ec2c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreManager
+--- !u!114 &1833739471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1833739465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34557cdbf872f97458fb021e59363d8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SoundManager
+  audioSource: {fileID: 838537774}
+  soundClipInfoList: []
+  mixerGroupsInfoList: []
 --- !u!1 &1859650896
 GameObject:
   m_ObjectHideFlags: 0
@@ -8245,3 +8394,4 @@ SceneRoots:
   - {fileID: 1513312589}
   - {fileID: 1995095073}
   - {fileID: 1420285760}
+  - {fileID: 838537775}

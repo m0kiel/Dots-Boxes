@@ -51,8 +51,9 @@ public class VersusAI : Singleton<VersusAI>
             }
         }
 
+        int preventStuck = 5;
         // Find an available tile to place a line
-        while (true)
+        while (preventStuck > 0)
         {
             squareTile = boardManager.GetRandomSquareTile(index);
 
@@ -65,6 +66,7 @@ public class VersusAI : Singleton<VersusAI>
             }
             else
             {
+                preventStuck--;
                 index--;
 
                 if (index < 1)
