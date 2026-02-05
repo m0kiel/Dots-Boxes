@@ -11,9 +11,12 @@ public class VersusAI : Singleton<VersusAI>
     {
         difficulty = GameManager.Instance.CurrentDifficulty;
 
-        choiceIntervals.Add(GameDifficulty.EASY, new() { 0.2f, 0.8f });
-        choiceIntervals.Add(GameDifficulty.NORMAL, new() { 0.2f, 0.8f });
-        choiceIntervals.Add(GameDifficulty.HARD, new() { 0.2f, 0.8f });
+        // 0 to first value will target tiles with 2 lines remaining
+        // first value to second value will target tiles with 3 lines remaining
+        // second value to 1 will target tiles with 4 lines remaining
+        choiceIntervals.Add(GameDifficulty.EASY, new() { 0.4f, 0.6f });
+        choiceIntervals.Add(GameDifficulty.NORMAL, new() { 0.2f, 0.6f });
+        choiceIntervals.Add(GameDifficulty.HARD, new() { 0.05f, 0.8f });
     }
 
     public void PlaceLine()
@@ -48,25 +51,27 @@ public class VersusAI : Singleton<VersusAI>
             }
         }
 
-        int preventStuck = 10;
-    Repeat:
-        if (preventStuck < 0) { return; }
-
-        Debug.Log(index);
-        squareTile = boardManager.GetRandomSquareTile(index);
-
-        if (squareTile != null)
+        // Find an available tile to place a line
+        while (true)
         {
-            Debug.Log("Done");
-            remainingSquareLines = squareTile.GetRemainingLineSides();
-            remainingSquareLines[Random.Range(0, remainingSquareLines.Count)].ToggleLine(TeamInteraction.RED);
-        }
-        else
-        {
-            preventStuck--;
-            index--;
-            Debug.Log("GOTO");
-            goto Repeat;
+            squareTile = boardManager.GetRandomSquareTile(index);
+
+            if (squareTile != null)
+            {
+                Debug.Log("Done");
+                remainingSquareLines = squareTile.GetRemainingLineSides();
+                remainingSquareLines[Random.Range(0, remainingSquareLines.Count)].ToggleLine(TeamInteraction.RED);
+                break;
+            }
+            else
+            {
+                index--;
+
+                if (index < 1)
+                {
+                    index = 4;
+                }
+            }
         }
     }
 }

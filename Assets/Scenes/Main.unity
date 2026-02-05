@@ -5056,7 +5056,7 @@ GameObject:
   - component: {fileID: 1346295066}
   - component: {fileID: 1346295065}
   m_Layer: 5
-  m_Name: AI
+  m_Name: PlayAI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7855,7 +7855,7 @@ GameObject:
   - component: {fileID: 2066828195}
   - component: {fileID: 2066828194}
   m_Layer: 5
-  m_Name: Friend
+  m_Name: PlayFriend
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

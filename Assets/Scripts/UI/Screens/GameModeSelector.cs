@@ -15,13 +15,13 @@ public class GameModeSelector : BaseScreen
 
 
         #region MainButtons
-        UtilitiesUI.GetComponentByName<Button>(mainButtons, "Friend").onClick.AddListener(() =>
+        UtilitiesUI.GetComponentByName<Button>(mainButtons, "PlayFriend").onClick.AddListener(() =>
         {
             GameManager.Instance.SetCurrentGameMode(GameMode.FRIEND);
             DefaultSettings();
         });
 
-        UtilitiesUI.GetComponentByName<Button>(mainButtons, "AI").onClick.AddListener(() =>
+        UtilitiesUI.GetComponentByName<Button>(mainButtons, "PlayAI").onClick.AddListener(() =>
         {
             GameManager.Instance.SetCurrentGameMode(GameMode.AI);
             DefaultSettings();
