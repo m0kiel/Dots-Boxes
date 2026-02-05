@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
@@ -28,8 +29,14 @@ public class SquareLine : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
 
     public void OnPointerClick(PointerEventData eventData)
     {
-       
-        ToggleLine((TeamInteraction)TurnManager.Instance.CurrentTurn);
+        if (GameManager.Instance.CurrentGameMode == GameMode.FRIEND)
+        {
+            StartCoroutine(ToggleLine((TeamInteraction)TurnManager.Instance.CurrentTurn));
+        }
+        else
+        {
+            StartCoroutine(ToggleLine(TeamInteraction.BLUE));
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -45,27 +52,29 @@ public class SquareLine : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
         ChangeSpriteColorAlpha(0.4f);
     }
 
-    public void ToggleLine(TeamInteraction teamInteraction)
+    public IEnumerator ToggleLine(TeamInteraction teamInteraction)
     {
         if (GameManager.Instance.CurrentGameMode == GameMode.AI)
         {
-            if (TurnManager.Instance.CurrentTurn != TeamTurn.BLUE)
+            if (TurnManager.Instance.CurrentTurn != TeamTurn.BLUE && teamInteraction == TeamInteraction.BLUE)
             {
                 Debug.Log("Not Your Turn");
-                //return;
+                yield break;
             }
         }
+
+        Debug.Log(TurnManager.Instance.CurrentTurn.ToString() + " " + teamInteraction.ToString());
 
         if (isSquareCompleted) 
         {
             Debug.Log("Square is Completed, Cannot Remove");
-            return;
+            yield break;
         }
 
         if (owner == (LineOwner)teamInteraction)
         {
             Debug.Log("Cannot Erase Your Line");
-            return;
+            yield break;
         }
 
         switch (owner)
@@ -79,7 +88,7 @@ public class SquareLine : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
             case LineOwner.RED:
                 {
                     squareTiles.ForEach(tile => { tile.SetOccupiedSide(this, false); });
-                    return;
+                    yield break;
                 }
         }
 
@@ -91,6 +100,9 @@ public class SquareLine : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
 
 
         UpdateSquareTile((Team)teamInteraction);
+
+        yield return new WaitForSeconds(0.4f);
+
         if (GameManager.Instance.CurrentGameMode == GameMode.AI && TurnManager.Instance.CurrentTurn == TeamTurn.RED)
         {
             VersusAI.Instance.PlaceLine();

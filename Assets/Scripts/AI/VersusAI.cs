@@ -36,7 +36,7 @@ public class VersusAI : Singleton<VersusAI>
         if (squareTile != null)
         {
             remainingSquareLines = squareTile.GetRemainingLineSides();
-            remainingSquareLines[0].ToggleLine(TeamInteraction.RED);
+            StartCoroutine(remainingSquareLines[0].ToggleLine(TeamInteraction.RED));
             return;
         }
 
@@ -61,7 +61,7 @@ public class VersusAI : Singleton<VersusAI>
             {
                 Debug.Log("Done");
                 remainingSquareLines = squareTile.GetRemainingLineSides();
-                remainingSquareLines[Random.Range(0, remainingSquareLines.Count)].ToggleLine(TeamInteraction.RED);
+                StartCoroutine(remainingSquareLines[Random.Range(0, remainingSquareLines.Count)].ToggleLine(TeamInteraction.RED));
                 break;
             }
             else
@@ -75,5 +75,6 @@ public class VersusAI : Singleton<VersusAI>
                 }
             }
         }
+        Debug.Log("Exited Loop");
     }
 }
