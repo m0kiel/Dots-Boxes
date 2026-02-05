@@ -1,10 +1,27 @@
+using System;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class BoardManager : Singleton<BoardManager>
 {
-    [SerializeField] List<GameObject> tilePrefabs = new();
+    #region EVENTS
+    public static event EventHandler<ChangeLineStateEventArgs> ChangeLineState;
 
+    public class ChangeLineStateEventArgs : EventArgs { public SquareLine line; public bool state; }
+
+    public static void InvokeChangeLineState(GameObject sender, SquareLine newLine, bool newState)
+    {
+        ChangeLineState?.Invoke(sender, new ChangeLineStateEventArgs { line = newLine, state = newState });
+    }
+    private void Events_ChangeLineState(object sender, ChangeLineStateEventArgs e)
+    {
+        
+    }
+    #endregion
+
+    [SerializeField] List<GameObject> tilePrefabs = new();
 
     List<List<GameObject>> board = new();
 
@@ -154,5 +171,29 @@ public class BoardManager : Singleton<BoardManager>
         Vector3 newPosition = new(displacementX, displacementY, -10);
 
         Camera.main.transform.position = newPosition;
+    }
+
+    public SquareTile GetRandomSquareTile(int numRemaining)
+    {
+        List<SquareTile> randomListSquareTiles = new List<SquareTile>();
+        foreach (List<GameObject> row in board)
+        {
+            foreach (GameObject squareTileGo in row)
+            {
+                SquareTile squareTile = squareTileGo.transform.Find("Tile").GetComponent<SquareTile>();
+
+                if (squareTile.GetNumRemainingLineSides() == numRemaining)
+                {
+                    randomListSquareTiles.Add(squareTile);
+                }
+            }
+        }
+
+        if (randomListSquareTiles.Count == 0)
+        {
+            return null;
+        }
+
+        return randomListSquareTiles[Random.Range(0, randomListSquareTiles.Count)];
     }
 }

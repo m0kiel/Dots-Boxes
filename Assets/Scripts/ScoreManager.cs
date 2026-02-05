@@ -23,7 +23,7 @@ public class ScoreManager : Singleton<ScoreManager>
 
     
 
-    public void ResetGame()
+    public void ResetScore()
     {
         blueTeamPoints = 0;
         redTeamPoints = 0;
