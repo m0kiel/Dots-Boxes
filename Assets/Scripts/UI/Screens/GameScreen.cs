@@ -17,6 +17,8 @@ public class GameScreen : BaseScreen
         #region MainButtons
         UtilitiesUI.GetComponentByName<Button>(mainButtons, "GameOptions").onClick.AddListener(() =>
         {
+            SoundManager.Instance.PlaySound(SoundType.ButtonClick);
+
             currentScreen.ChangeScreens(Screens.GameOptions);
             GameObject grid = GameObject.Find("Grid");
             for (int i = 0; i < grid.transform.childCount; i++)

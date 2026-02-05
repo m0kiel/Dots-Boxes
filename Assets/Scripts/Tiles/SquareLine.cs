@@ -82,6 +82,9 @@ public class SquareLine : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
                     return;
                 }
         }
+
+        SoundManager.Instance.PlaySound(SoundType.PlaceLine);
+
         ChageSpriteTeamColor((TeamInteraction)TurnManager.Instance.CurrentTurn);
 
         squareTiles.ForEach(tile => { tile.SetOccupiedSide(this, true); } );

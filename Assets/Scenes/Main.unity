@@ -4439,7 +4439,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: HEIGHT
+  m_text: ROWS
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4473,7 +4473,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -4803,7 +4803,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -13.999996}
-  m_SizeDelta: {x: 300, y: 50}
+  m_SizeDelta: {x: 500, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1183266562
 MonoBehaviour:
@@ -4825,7 +4825,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: WIDTH
+  m_text: COLUMNS
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4859,7 +4859,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -7149,8 +7149,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SoundManager
   audioSource: {fileID: 838537774}
-  soundClipInfoList: []
-  mixerGroupsInfoList: []
+  soundClipInfoList:
+  - soundType: 2
+    volume: 1
+    mixerGroupType: 0
+    sound: {fileID: 8300000, guid: fa7638003d338ec4a8f8561307791cab, type: 3}
+  - soundType: 0
+    volume: 1
+    mixerGroupType: 0
+    sound: {fileID: 8300000, guid: c1d6bbe4fc282d34eaec5114c32745cf, type: 3}
+  - soundType: 1
+    volume: 1
+    mixerGroupType: 0
+    sound: {fileID: 8300000, guid: 8adef0e75db34c3448b02494e9f95728, type: 3}
+  - soundType: 4
+    volume: 1
+    mixerGroupType: 0
+    sound: {fileID: 8300000, guid: a60769d936210a1458a921016e4f4ea3, type: 3}
+  - soundType: 5
+    volume: 1
+    mixerGroupType: 0
+    sound: {fileID: 8300000, guid: 09fbe4b5a79cd5442b3caa61334c9652, type: 3}
+  - soundType: 6
+    volume: 1
+    mixerGroupType: 0
+    sound: {fileID: 8300000, guid: f137920955289d24faaf8b4a12bde0a8, type: 3}
+  - soundType: 3
+    volume: 0.2
+    mixerGroupType: 0
+    sound: {fileID: 8300000, guid: 35b5fb1a201b9eb43927e11fd651a6d2, type: 3}
+  mixerGroupsInfoList:
+  - mixerGroupType: 0
+    mixerGroup: {fileID: 24300002, guid: f116e9b053b67e444a73b52cbff4ef3c, type: 2}
 --- !u!1 &1859650896
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,6 +17,8 @@ public class OptionsScreen : BaseScreen
         #region MainButtons
         UtilitiesUI.GetComponentByName<Button>(mainButtons, "Back").onClick.AddListener(() =>
         {
+            SoundManager.Instance.PlaySound(SoundType.ButtonClick);
+
             currentScreen.ChangeScreens(Screens.MainMenu);
         });
         #endregion

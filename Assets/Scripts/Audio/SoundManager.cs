@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
-public enum SoundType { CompleteSquare, PlaceLine, ButtonClick, SliderSlide }
+public enum SoundType { CompleteSquare, PlaceLine, ButtonClick, SliderSlide, Win, Lose, Draw }
 public enum MixerGroupType { Master }
 
 public class SoundManager : Singleton<SoundManager>
 {
     [SerializeField] private AudioSource audioSource;
 
-    [SerializeField] private List<SoundClipInfo> soundClipInfoList = new();
+    [SerializeField] private List<SoundClipInfo> soundClipInfoList;
     private Dictionary<SoundType, SoundClipInfo> soundClips = new();
 
-    [SerializeField] List<MixerGroupInfo> mixerGroupsInfoList = new();
+    [SerializeField] List<MixerGroupInfo> mixerGroupsInfoList;
     private Dictionary<MixerGroupType, AudioMixerGroup> mixers = new();
 
     private void Awake()

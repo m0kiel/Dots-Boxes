@@ -24,6 +24,8 @@ public class SquareTile : MonoBehaviour
 
     public void CompleteSquare(Color teamColor)
     {
+        SoundManager.Instance.PlaySound(SoundType.CompleteSquare);
+
         GetComponent<SpriteRenderer>().color = teamColor; // Green
     }    
 
