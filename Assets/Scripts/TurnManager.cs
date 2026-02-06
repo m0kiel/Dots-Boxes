@@ -23,6 +23,24 @@ public class TurnManager : Singleton<TurnManager>
         ChangeTurn();
     }
 
+
+
+    public static event EventHandler<SkipTurnPressedEventArgs> SkipTurnPressedEvent;
+    public static event EventHandler<CheckSkipTurnStateEventArgs> CheckSkipTurnStateEvent;
+
+    public class SkipTurnPressedEventArgs : EventArgs { public TeamTurn turn; }
+    public class CheckSkipTurnStateEventArgs : EventArgs { public TeamTurn turn; }
+
+    public static void InvokeSkipTurnPressed(GameObject sender, TeamTurn newTurn)
+    {
+        SkipTurnPressedEvent?.Invoke(sender, new SkipTurnPressedEventArgs { turn = newTurn });
+    }
+
+    public static void InvokeCheckSkipTurnState(GameObject sender, TeamTurn newTurn)
+    {
+        CheckSkipTurnStateEvent?.Invoke(sender, new CheckSkipTurnStateEventArgs { turn = newTurn });
+    }
+
     #endregion
 
     private TeamTurn currentTurn = TeamTurn.BLUE;
@@ -31,11 +49,13 @@ public class TurnManager : Singleton<TurnManager>
     public void ChangeTurn()
     {
         currentTurn = currentTurn == TeamTurn.BLUE ? TeamTurn.RED : TeamTurn.BLUE;
+        InvokeCheckSkipTurnState(gameObject, currentTurn);
     }
 
     public void StartTurn()
     {
         currentTurn = TeamTurn.BLUE;
+        
 
         if (GameManager.Instance.CurrentGameMode == GameMode.FRIEND)
         {
@@ -46,6 +66,7 @@ public class TurnManager : Singleton<TurnManager>
             ChangeTurnEvent += Events_ChangeTurnAI;
         }
     }
+
     public void ResetTurn()
     {
         currentTurn = TeamTurn.BLUE;
