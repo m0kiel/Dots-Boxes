@@ -35,11 +35,11 @@ public class GameModeSelector : BaseScreen
 
             transform.parent.Find("Game").Find("Texts").Find("Difficulty").GetComponentInChildren<TMP_Text>().text = GameManager.Instance.CurrentDifficulty.ToString();
 
+            DefaultSettings();
+
             GameObject ai = new GameObject("AI");
             ai.AddComponent<VersusAI>();
             ai.GetComponent<VersusAI>().InitAI();
-
-            DefaultSettings();
         });
 
         UtilitiesUI.GetComponentByName<Button>(mainButtons, "Back").onClick.AddListener(() =>

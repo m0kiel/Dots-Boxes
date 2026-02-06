@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class VersusAI : Singleton<VersusAI>
 {
-    GameDifficulty difficulty;
+    GameDifficulty difficulty = GameDifficulty.NORMAL;
 
     Dictionary<GameDifficulty, List<float>> choiceIntervals = new();
 
@@ -26,7 +26,6 @@ public class VersusAI : Singleton<VersusAI>
         float randomChoiceValue = Random.Range(0.0f, 1.0f);
 
         List<float> currentInterval = choiceIntervals[difficulty];
-
 
         // Check if there are SquareTiles to be claimed
         SquareTile squareTile = boardManager.GetRandomSquareTile(1);

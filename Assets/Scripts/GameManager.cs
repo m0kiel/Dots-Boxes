@@ -8,7 +8,7 @@ public enum GameMode { AI, FRIEND }
 public enum Team { NONE = 0, BLUE = 1, RED = 2 }
 public class GameManager : Singleton<GameManager>
 {
-    GameDifficulty currentDifficulty = GameDifficulty.NORMAL;
+    [SerializeField] GameDifficulty currentDifficulty = GameDifficulty.NORMAL;
     public GameDifficulty CurrentDifficulty { get { return currentDifficulty; } }
 
     GameMode currentGameMode = GameMode.AI;
@@ -67,7 +67,9 @@ public class GameManager : Singleton<GameManager>
     }
 
     public void SetCurrentDifficulty(GameDifficulty difficulty)
-    { currentDifficulty = difficulty; }
+    {
+        Debug.Log("A");
+        currentDifficulty = difficulty; }
 
     public void SetCurrentGameMode(GameMode gameMode)
     { currentGameMode = gameMode; }
