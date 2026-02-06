@@ -43,6 +43,11 @@ public class SoundManager : Singleton<SoundManager>
             soundClips.Add(soundClipInfoList[i].soundType, soundClipInfoList[i]);
         }
     }
+
+    public AudioMixerGroup GetAudioMixerGroup(MixerGroupType type)
+    {
+        return mixers[type];
+    }
 }
 
 [Serializable]
