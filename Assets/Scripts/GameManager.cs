@@ -16,7 +16,33 @@ public class GameManager : Singleton<GameManager>
 
     Vector2 boardSize = new(6, 6);
     public Vector2 BoardSize { get { return boardSize; } }
-    
+
+    private int maxRemoveLine = 3;
+    private int blueRemoveLineRemaining = 3;
+    private int redRemoveLineRemaining = 3;
+
+    private void Start()
+    {
+        blueRemoveLineRemaining = maxRemoveLine;
+        redRemoveLineRemaining = maxRemoveLine;
+    }
+
+    public int GetTeamRemoveLineRemaining(Team team)
+    {
+        return team == Team.BLUE ? blueRemoveLineRemaining : redRemoveLineRemaining;
+    }
+    public void ReduceTeamRemoveLineRemaining(Team team)
+    {
+        if (team == Team.BLUE)
+        {
+            blueRemoveLineRemaining--;
+        }
+        else if (team == Team.RED) 
+        {
+            redRemoveLineRemaining--;
+        }
+    }
+
     public void SetCurrentDifficulty(GameDifficulty difficulty)
     { currentDifficulty = difficulty; }
 
@@ -40,5 +66,8 @@ public class GameManager : Singleton<GameManager>
         {
             Destroy(ai);
         }
+
+        blueRemoveLineRemaining = maxRemoveLine;
+        redRemoveLineRemaining = maxRemoveLine;
     }
 }

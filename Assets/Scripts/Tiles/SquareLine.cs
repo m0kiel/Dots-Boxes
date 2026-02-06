@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -63,8 +64,6 @@ public class SquareLine : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
             }
         }
 
-        Debug.Log(TurnManager.Instance.CurrentTurn.ToString() + " " + teamInteraction.ToString());
-
         if (isSquareCompleted) 
         {
             Debug.Log("Square is Completed, Cannot Remove");
@@ -77,31 +76,35 @@ public class SquareLine : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
             yield break;
         }
 
-        switch (owner)
+        bool isPlaceLine = true;
+
+        if (owner == LineOwner.NONE)
         {
-            case LineOwner.NONE:
-                {
-                    owner = (LineOwner)teamInteraction;
-                    break;
-                }
-            case LineOwner.BLUE:
-            case LineOwner.RED:
-                {
-                    squareTiles.ForEach(tile => { tile.SetOccupiedSide(this, false); });
-                    yield break;
-                }
+            owner = (LineOwner)teamInteraction;
+            SoundManager.Instance.PlaySound(SoundType.PlaceLine);
+        }
+        else
+        {
+            if (GameManager.Instance.GetTeamRemoveLineRemaining((Team)teamInteraction) > 0)
+            {
+                owner = LineOwner.NONE;
+                isPlaceLine = false;
+                GameManager.Instance.ReduceTeamRemoveLineRemaining((Team)teamInteraction);
+                // SoundManager.Instance.PlaySound(SoundType.RemoveLine);
+            }
+            else
+            {
+                yield break;
+            }
         }
 
-        SoundManager.Instance.PlaySound(SoundType.PlaceLine);
+        ChageSpriteTeamColor((TeamInteraction)TurnManager.Instance.CurrentTurn, isPlaceLine);
 
-        ChageSpriteTeamColor((TeamInteraction)TurnManager.Instance.CurrentTurn);
-
-        squareTiles.ForEach(tile => { tile.SetOccupiedSide(this, true); } );
-
+        squareTiles.ForEach(tile => { tile.SetOccupiedSide(this, isPlaceLine); } );
 
         UpdateSquareTile((Team)teamInteraction);
 
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(0.6f);
 
         if (GameManager.Instance.CurrentGameMode == GameMode.AI && TurnManager.Instance.CurrentTurn == TeamTurn.RED)
         {
@@ -143,9 +146,16 @@ public class SquareLine : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
     { return squareTiles; }
 
 
-    public void ChageSpriteTeamColor(TeamInteraction team)
+    public void ChageSpriteTeamColor(TeamInteraction team, bool isPlaceLine)
     {
         Color teamColor;
+        if (!isPlaceLine) 
+        {
+            teamColor = new Color(0,0,0,0);
+            GetComponent<SpriteRenderer>().color = teamColor;
+            return;
+        }
+
         if (team == TeamInteraction.BLUE) 
         { teamColor = new Color(0, 0, 255, 255); }
 
