@@ -26,9 +26,18 @@ public class GameScreen : BaseScreen
                 grid.transform.GetChild(i).gameObject.SetActive(false);
             }
         });
-        #endregion
+        UtilitiesUI.GetComponentByName<Button>(mainButtons, "SkipTurn").onClick.AddListener(() =>
+        {
+            SoundManager.Instance.PlaySound(SoundType.ButtonClick);
+            TurnManager.InvokeSkipTurnPressed(gameObject, TurnManager.Instance.CurrentTurn);
+            TurnManager.Instance.ChangeTurn();
 
-        //OnGameObjectEnabled();
+            if (GameManager.Instance.CurrentGameMode == GameMode.AI)
+            {
+                VersusAI.Instance.PlaceLine();
+            }
+        });
+        #endregion
     }
 
     public override void OnGameObjectEnabled()
