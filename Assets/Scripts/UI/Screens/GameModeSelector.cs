@@ -21,6 +21,9 @@ public class GameModeSelector : BaseScreen
             SoundManager.Instance.PlaySound(SoundType.ButtonClick);
 
             GameManager.Instance.SetCurrentGameMode(GameMode.FRIEND);
+
+            transform.parent.Find("Game").Find("Texts").Find("Difficulty").GetComponentInChildren<TMP_Text>().text = "FRIEND";
+
             DefaultSettings();
         });
 
@@ -29,10 +32,14 @@ public class GameModeSelector : BaseScreen
             SoundManager.Instance.PlaySound(SoundType.ButtonClick);
 
             GameManager.Instance.SetCurrentGameMode(GameMode.AI);
-            DefaultSettings();
+
+            transform.parent.Find("Game").Find("Texts").Find("Difficulty").GetComponentInChildren<TMP_Text>().text = GameManager.Instance.CurrentDifficulty.ToString();
+
             GameObject ai = new GameObject("AI");
             ai.AddComponent<VersusAI>();
             ai.GetComponent<VersusAI>().InitAI();
+
+            DefaultSettings();
         });
 
         UtilitiesUI.GetComponentByName<Button>(mainButtons, "Back").onClick.AddListener(() =>
@@ -99,6 +106,8 @@ public class GameModeSelector : BaseScreen
         gameManager.SetBoardSize(boardWidth, boardHeight);
         boardManager.InitBoard();
         turnManager.StartTurn();
+
+        
 
         currentScreen.ChangeScreens(Screens.Game);
     }

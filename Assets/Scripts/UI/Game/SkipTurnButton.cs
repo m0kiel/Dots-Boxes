@@ -27,14 +27,11 @@ public class SkipTurnButton : MonoBehaviour
         TurnManager.SkipTurnPressedEvent += Events_SkipTurnPressed;
         TurnManager.CheckSkipTurnStateEvent += Events_CheckSkipTurnState;
 
-
         CheckSkipTurnState(TurnManager.Instance.CurrentTurn);
-        Debug.Log("ENABLED");
     }
 
     private void OnDisable()
     {
-        Debug.Log("DISABLED");
         TurnManager.SkipTurnPressedEvent -= Events_SkipTurnPressed;
         TurnManager.CheckSkipTurnStateEvent -= Events_CheckSkipTurnState;
     }
