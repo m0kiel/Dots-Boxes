@@ -7462,7 +7462,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1828559889}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
   m_Name: 
@@ -7670,6 +7670,14 @@ MonoBehaviour:
     volume: 0.2
     mixerGroupType: 0
     sound: {fileID: 8300000, guid: 35b5fb1a201b9eb43927e11fd651a6d2, type: 3}
+  - soundType: 7
+    volume: 1
+    mixerGroupType: 0
+    sound: {fileID: 8300000, guid: 5e7da036aeaf24f4d859e56a2fb329b7, type: 3}
+  - soundType: 7
+    volume: 1
+    mixerGroupType: 0
+    sound: {fileID: 8300000, guid: 5e7da036aeaf24f4d859e56a2fb329b7, type: 3}
   mixerGroupsInfoList:
   - mixerGroupType: 0
     mixerGroup: {fileID: 24300002, guid: f116e9b053b67e444a73b52cbff4ef3c, type: 2}
@@ -7689,6 +7697,9 @@ MonoBehaviour:
   - particleType: 0
     particlePrefab: {fileID: 4305569986096501532, guid: ffa543d36ea94b6479345f983c9fd9b9, type: 3}
     particleLifeSpan: 1
+  - particleType: 1
+    particlePrefab: {fileID: 4305569986096501532, guid: 6ae4bb9610a3d2b4495411e4c0027f3a, type: 3}
+    particleLifeSpan: 0.3
   worldSpaceCanvas: {fileID: 1828559889}
 --- !u!1 &1859650896
 GameObject:

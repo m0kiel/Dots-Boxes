@@ -1,13 +1,12 @@
-using System.Collections;
 using TMPro;
 using UnityEngine;
 
-public class CompleteSquareParticle : BaseParticle
+public class WrongInteractionParticle : BaseParticle
 {
     [SerializeField] AnimationCurve scaleCurve;
     TMP_Text textBox;
 
-    float textFontSize = 60f;
+    float textFontSize = 40f;
     float currentLife = 0;
 
     private void Awake()
@@ -18,6 +17,6 @@ public class CompleteSquareParticle : BaseParticle
     private void Update()
     {
         currentLife += Time.deltaTime;
-        textBox.fontSize = textFontSize * scaleCurve.Evaluate(currentLife);
+        textBox.fontSize = textFontSize * scaleCurve.Evaluate(currentLife * 1/particleLifespan); // Lifespan is 0.3
     }
 }

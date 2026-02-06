@@ -58,7 +58,6 @@ public class VersusAI : Singleton<VersusAI>
 
             if (squareTile != null)
             {
-                Debug.Log("Done");
                 remainingSquareLines = squareTile.GetRemainingLineSides();
                 StartCoroutine(remainingSquareLines[Random.Range(0, remainingSquareLines.Count)].ToggleLine(TeamInteraction.RED));
                 break;
@@ -74,6 +73,5 @@ public class VersusAI : Singleton<VersusAI>
                 }
             }
         }
-        Debug.Log("Exited Loop");
     }
 }
