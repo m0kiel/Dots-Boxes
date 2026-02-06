@@ -159,6 +159,8 @@ public class BoardManager : Singleton<BoardManager>
 
     void MoveCameraToCenterBoard()
     {
+        float heihghtOffset = 0.9f;
+
         Vector2 boardSize = GameManager.Instance.BoardSize;
 
         float newScale = Mathf.Max(boardSize.x, boardSize.y) / tileZoom;
@@ -168,7 +170,7 @@ public class BoardManager : Singleton<BoardManager>
 
         float displacementX = boardSize.x * squareScale * squareSize / 2 - squareSize / 2 / newScale;
         float displacementY = boardSize.y * squareScale * squareSize / 2 - squareSize / 2 / newScale;
-        Vector3 newPosition = new(displacementX, displacementY, -10);
+        Vector3 newPosition = new(displacementX, displacementY + heihghtOffset, -10);
 
         Camera.main.transform.position = newPosition;
     }

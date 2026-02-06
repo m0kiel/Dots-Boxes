@@ -4,6 +4,7 @@ using NUnit.Framework;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 public enum TeamInteraction { BLUE = 1, RED = 2}
 public enum LineOwner { NONE = 0, BLUE = 1, RED = 2 }
@@ -50,7 +51,7 @@ public class SquareLine : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (owner != LineOwner.NONE) { return; }
-        ChangeSpriteColorAlpha(0.4f);
+        ChangeSpriteColorAlpha(0.7f);
     }
 
     public IEnumerator ToggleLine(TeamInteraction teamInteraction)
@@ -59,6 +60,7 @@ public class SquareLine : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
         {
             if (TurnManager.Instance.CurrentTurn != TeamTurn.BLUE && teamInteraction == TeamInteraction.BLUE)
             {
+                SpawnWrongInteractionParticle();
                 Debug.Log("Not Your Turn");
                 yield break;
             }
@@ -66,12 +68,14 @@ public class SquareLine : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
 
         if (isSquareCompleted) 
         {
+            SpawnWrongInteractionParticle();
             Debug.Log("Square is Completed, Cannot Remove");
             yield break;
         }
 
         if (owner == (LineOwner)teamInteraction)
         {
+            SpawnWrongInteractionParticle();
             Debug.Log("Cannot Erase Your Line");
             yield break;
         }
@@ -90,10 +94,11 @@ public class SquareLine : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
                 owner = LineOwner.NONE;
                 isPlaceLine = false;
                 GameManager.Instance.ReduceTeamRemoveLineRemaining((Team)teamInteraction);
-                // SoundManager.Instance.PlaySound(SoundType.RemoveLine);
+                SoundManager.Instance.PlaySound(SoundType.RemoveLine);
             }
             else
             {
+                SpawnWrongInteractionParticle();
                 yield break;
             }
         }
@@ -114,7 +119,7 @@ public class SquareLine : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
 
     public void UpdateSquareTile(Team player)
     {
-        bool hasCompletedSquare = false;
+        //bool hasCompletedSquare = false;
         for (int i = 0; i < squareTiles.Count; i++) 
         {
             if (squareTiles[i].GetNumRemainingLineSides() == 0)
@@ -124,11 +129,12 @@ public class SquareLine : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
 
                 ScoreManager.Instance.AddPoint(player);
                 ScoreManager.Instance.CheckEndGame();
-                hasCompletedSquare = true;
+                //hasCompletedSquare = true;
             }
         }
 
-        if (!hasCompletedSquare)
+        //if (!hasCompletedSquare)
+        if (!isSquareCompleted)
         {
             TurnManager.Instance.ChangeTurn();
         }
@@ -166,6 +172,19 @@ public class SquareLine : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
     }
     public void ChangeSpriteColorAlpha(float amount)
     {
-        GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, amount);
+        GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, amount);
+    }
+
+    private void SpawnWrongInteractionParticle()
+    {
+        Vector3 mousePos = new Vector3(Mouse.current.position.value.x, Mouse.current.position.value.y, 1);
+
+        ParticleManager.Instance.SpawnWorldSpaceParticle(ParticleType.WrongInteraction, Camera.main.ScreenToWorldPoint(mousePos));
+        SoundManager.Instance.PlaySound(SoundType.WrongInteraction);
+    }
+
+    public void SetSquareComplete()
+    {
+        isSquareCompleted = true;
     }
 }

@@ -7,19 +7,21 @@ public class SkipTurnButton : MonoBehaviour
 
     private void Events_SkipTurnPressed(object sender, TurnManager.SkipTurnPressedEventArgs e)
     {
-        if (e.turn == TeamTurn.BLUE && GameManager.Instance.GetTeamCanSkipTurn(Team.BLUE))
+        TurnManager turnManager = TurnManager.Instance;
+        GameManager gameManager = GameManager.Instance;
+
+        if (turnManager.CurrentTurn == TeamTurn.BLUE && gameManager.GetTeamCanSkipTurn(Team.BLUE))
         {
-            GameManager.Instance.DisableTeamCanSkipTurn(Team.BLUE);
+            gameManager.DisableTeamCanSkipTurn(Team.BLUE);
         }
-        else if (e.turn == TeamTurn.RED && GameManager.Instance.GetTeamCanSkipTurn(Team.RED) && GameManager.Instance.CurrentGameMode == GameMode.FRIEND)
+        else if (turnManager.CurrentTurn == TeamTurn.RED && gameManager.GetTeamCanSkipTurn(Team.RED) && GameManager.Instance.CurrentGameMode == GameMode.FRIEND)
         {
-            GameManager.Instance.DisableTeamCanSkipTurn(Team.RED);
+            gameManager.DisableTeamCanSkipTurn(Team.RED);
         }
     }
     private void Events_CheckSkipTurnState(object sender, TurnManager.CheckSkipTurnStateEventArgs e)
     {
-        CheckSkipTurnState(e.turn);
-        
+        CheckSkipTurnState(TurnManager.Instance.CurrentTurn);
     }
 
     private void OnEnable()
@@ -27,14 +29,11 @@ public class SkipTurnButton : MonoBehaviour
         TurnManager.SkipTurnPressedEvent += Events_SkipTurnPressed;
         TurnManager.CheckSkipTurnStateEvent += Events_CheckSkipTurnState;
 
-
         CheckSkipTurnState(TurnManager.Instance.CurrentTurn);
-        Debug.Log("ENABLED");
     }
 
     private void OnDisable()
     {
-        Debug.Log("DISABLED");
         TurnManager.SkipTurnPressedEvent -= Events_SkipTurnPressed;
         TurnManager.CheckSkipTurnStateEvent -= Events_CheckSkipTurnState;
     }

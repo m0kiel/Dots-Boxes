@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ParticleType { CompleteSquare }
+public enum ParticleType { CompleteSquare, WrongInteraction }
 public class ParticleManager : Singleton<ParticleManager>
 {
     [SerializeField] List<ParticleInfo> particleInfoList;

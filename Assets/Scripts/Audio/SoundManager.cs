@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
-public enum SoundType { CompleteSquare, PlaceLine, ButtonClick, SliderSlide, Win, Lose, Draw }
+public enum SoundType { CompleteSquare, PlaceLine, ButtonClick, SliderSlide, Win, Lose, Draw, WrongInteraction, RemoveLine }
 public enum MixerGroupType { Master }
 
 public class SoundManager : Singleton<SoundManager>
@@ -42,6 +42,11 @@ public class SoundManager : Singleton<SoundManager>
         {
             soundClips.Add(soundClipInfoList[i].soundType, soundClipInfoList[i]);
         }
+    }
+
+    public AudioMixerGroup GetAudioMixerGroup(MixerGroupType type)
+    {
+        return mixers[type];
     }
 }
 

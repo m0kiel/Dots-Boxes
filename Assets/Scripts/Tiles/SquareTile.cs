@@ -28,6 +28,10 @@ public class SquareTile : MonoBehaviour
 
         ParticleManager.Instance.SpawnWorldSpaceParticle(ParticleType.CompleteSquare, transform.position);
 
+        foreach (SquareLine squareLine in squareLineSides.Values)
+        {
+            squareLine.SetSquareComplete();
+        }
 
         GetComponent<SpriteRenderer>().color = teamColor; // Green
     }    

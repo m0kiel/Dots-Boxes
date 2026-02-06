@@ -29,7 +29,7 @@ public class GameScreen : BaseScreen
         UtilitiesUI.GetComponentByName<Button>(mainButtons, "SkipTurn").onClick.AddListener(() =>
         {
             SoundManager.Instance.PlaySound(SoundType.ButtonClick);
-            TurnManager.InvokeSkipTurnPressed(gameObject, TurnManager.Instance.CurrentTurn);
+            TurnManager.InvokeSkipTurnPressed(gameObject);
             TurnManager.Instance.ChangeTurn();
 
             if (GameManager.Instance.CurrentGameMode == GameMode.AI)

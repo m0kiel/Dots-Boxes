@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 1409346367968186043}
   - component: {fileID: 4930233117037992452}
   - component: {fileID: 7748008292645663072}
-  - component: {fileID: 6249202975078034070}
+  - component: {fileID: -707350145915315386}
   m_Layer: 5
-  m_Name: CompleteSquareParticle
+  m_Name: WrongInteractionParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: +1
+  m_text: X
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 79459efec17a4d00a321bdcc27bbc385, type: 2}
@@ -93,8 +93,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60
-  m_fontSizeBase: 60
+  m_fontSize: 0
+  m_fontSizeBase: 0
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -137,7 +137,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &6249202975078034070
+--- !u!114 &-707350145915315386
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -146,15 +146,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 4305569986096501532}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15736b8df4bf329439245e839731530a, type: 3}
+  m_Script: {fileID: 11500000, guid: 828a0e12f097cc74f819bef592c28c5a, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CompleteSquareParticle
+  m_EditorClassIdentifier: Assembly-CSharp::WrongInteractionParticle
   scaleCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.000012785196
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -169,39 +169,6 @@ MonoBehaviour:
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  alphaCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0.0000010174699
-      value: 1.0023816
-      inSlope: -0.013635671
-      outSlope: -0.013635671
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.35000005
-    - serializedVersion: 3
-      time: 0.68445563
-      value: 0.8686582
-      inSlope: -0.4683624
-      outSlope: -0.4683624
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.17829278
-      outWeight: 0.49038762
-    - serializedVersion: 3
-      time: 1.0043316
-      value: 0
-      inSlope: -7.009909
-      outSlope: -7.009909
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.052154053
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
