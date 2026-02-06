@@ -27,18 +27,25 @@ public class TurnManager : Singleton<TurnManager>
 
     public static event EventHandler<SkipTurnPressedEventArgs> SkipTurnPressedEvent;
     public static event EventHandler<CheckSkipTurnStateEventArgs> CheckSkipTurnStateEvent;
+    public static event EventHandler<DisplayTurnEventArgs> DisplayTurnEvent;
 
-    public class SkipTurnPressedEventArgs : EventArgs { public TeamTurn turn; }
-    public class CheckSkipTurnStateEventArgs : EventArgs { public TeamTurn turn; }
+    public class SkipTurnPressedEventArgs : EventArgs { }
+    public class CheckSkipTurnStateEventArgs : EventArgs { }
+    public class DisplayTurnEventArgs : EventArgs { }
 
-    public static void InvokeSkipTurnPressed(GameObject sender, TeamTurn newTurn)
+    public static void InvokeSkipTurnPressed(GameObject sender)
     {
-        SkipTurnPressedEvent?.Invoke(sender, new SkipTurnPressedEventArgs { turn = newTurn });
+        SkipTurnPressedEvent?.Invoke(sender, new SkipTurnPressedEventArgs { });
     }
 
-    public static void InvokeCheckSkipTurnState(GameObject sender, TeamTurn newTurn)
+    public static void InvokeCheckSkipTurnState(GameObject sender)
     {
-        CheckSkipTurnStateEvent?.Invoke(sender, new CheckSkipTurnStateEventArgs { turn = newTurn });
+        CheckSkipTurnStateEvent?.Invoke(sender, new CheckSkipTurnStateEventArgs { });
+    }
+
+    public static void InvokeDisplayTurn(GameObject sender)
+    {
+        DisplayTurnEvent?.Invoke(sender, new DisplayTurnEventArgs { });
     }
 
     #endregion
@@ -49,7 +56,8 @@ public class TurnManager : Singleton<TurnManager>
     public void ChangeTurn()
     {
         currentTurn = currentTurn == TeamTurn.BLUE ? TeamTurn.RED : TeamTurn.BLUE;
-        InvokeCheckSkipTurnState(gameObject, currentTurn);
+        InvokeCheckSkipTurnState(gameObject);
+        InvokeDisplayTurn(gameObject);
     }
 
     public void StartTurn()
