@@ -159,7 +159,7 @@ public class BoardManager : Singleton<BoardManager>
 
     void MoveCameraToCenterBoard()
     {
-        float heihghtOffset = 0.5f;
+        float heihghtOffset = 0.9f;
 
         Vector2 boardSize = GameManager.Instance.BoardSize;
 

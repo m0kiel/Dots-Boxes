@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 
-public enum GameDifficulty { EASY, NORMAL, HARD }
+public enum GameDifficulty { EASY = 3, NORMAL = 2, HARD = 1}
 public enum GameMode { AI, FRIEND }
 
 public enum Team { NONE = 0, BLUE = 1, RED = 2 }
@@ -42,11 +42,33 @@ public class GameManager : Singleton<GameManager>
         if (team == Team.BLUE)
         {
             blueRemoveLineRemaining--;
+
+            GameObject blueLinesRemaining = GameObject.Find("UI").transform.Find("Game").Find("Texts").Find("BlueRemoveLines").gameObject;
+            for (int i = 0; i < maxRemoveLine; i++)
+            {
+                blueLinesRemaining.transform.GetChild(i).gameObject.SetActive(false);
+            }
+            for (int i = 0; i < blueRemoveLineRemaining; i++)
+            {
+                blueLinesRemaining.transform.GetChild(i).gameObject.SetActive(true);
+            }
         }
         else if (team == Team.RED) 
         {
             redRemoveLineRemaining--;
+
+            GameObject redLinesRemaining = GameObject.Find("UI").transform.Find("Game").Find("Texts").Find("RedRemoveLines").gameObject;
+            for (int i = 0; i < maxRemoveLine; i++)
+            {
+                redLinesRemaining.transform.GetChild(i).gameObject.SetActive(false);
+            }
+            for (int i = 0; i < redRemoveLineRemaining; i++)
+            {
+                redLinesRemaining.transform.GetChild(i).gameObject.SetActive(true);
+            }
         }
+
+        
     }
 
     public bool GetTeamCanSkipTurn(Team team)
@@ -67,9 +89,11 @@ public class GameManager : Singleton<GameManager>
     }
 
     public void SetCurrentDifficulty(GameDifficulty difficulty)
-    {
-        Debug.Log("A");
-        currentDifficulty = difficulty; }
+    { 
+        currentDifficulty = difficulty;
+        blueRemoveLineRemaining = (int)difficulty;
+        redRemoveLineRemaining = (int)difficulty;
+    }
 
     public void SetCurrentGameMode(GameMode gameMode)
     { currentGameMode = gameMode; }
@@ -92,10 +116,23 @@ public class GameManager : Singleton<GameManager>
             Destroy(ai);
         }
 
-        blueRemoveLineRemaining = maxRemoveLine;
-        redRemoveLineRemaining = maxRemoveLine;
+        blueRemoveLineRemaining = (int)currentDifficulty;
+        redRemoveLineRemaining = (int)currentDifficulty;
+
+        GameObject blueLinesRemaining = GameObject.Find("UI").transform.Find("Game").Find("Texts").Find("BlueRemoveLines").gameObject;
+        GameObject redLinesRemaining = GameObject.Find("UI").transform.Find("Game").Find("Texts").Find("RedRemoveLines").gameObject;
+        for (int i = 0; i < maxRemoveLine; i++)
+        {
+            blueLinesRemaining.transform.GetChild(i).gameObject.SetActive(false);
+            redLinesRemaining.transform.GetChild(i).gameObject.SetActive(false);
+        }
+        for (int i = 0; i < (int)currentDifficulty; i++)
+        {
+            blueLinesRemaining.transform.GetChild(i).gameObject.SetActive(true);
+            redLinesRemaining.transform.GetChild(i).gameObject.SetActive(true);
+        }
 
         blueCanSkipTurn = true;
         redCanSkipTurn = true;
-}
+    }
 }
