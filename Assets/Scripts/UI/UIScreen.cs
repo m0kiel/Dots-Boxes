@@ -8,10 +8,9 @@ public class UIScreen : MonoBehaviour
     [SerializeField] Screens thisScreenKey;
 
     private List<GameObject> elements = new();
-    private Dictionary<Screens, UIScreen> screenConections = new();
 
-    [SerializeField] private List<Screens> screenKeys;
-    [SerializeField] private List<UIScreen> screens;
+    [SerializeField] private List<UIScreenInfo> uiScreensInfoList;
+    private Dictionary<Screens, UIScreen> screenConections = new();
     
     void Awake()
     {
@@ -28,11 +27,9 @@ public class UIScreen : MonoBehaviour
     }
     private void SetScreenConnections()
     {
-        if (screenKeys.Count != screens.Count) { Debug.LogWarning("Different Amount of ScreenKeys and Screens"); }
-
-        for (int i = 0; i < screenKeys.Count; i++)
+        for (int i = 0; i < uiScreensInfoList.Count; i++)
         {
-            screenConections.Add(screenKeys[i], screens[i]);
+            screenConections.Add(uiScreensInfoList[i].screenKey, uiScreensInfoList[i].screen);
         }
     }
 
@@ -105,4 +102,11 @@ public class UIScreen : MonoBehaviour
 
         childElements.ForEach(e => { e.SetActive(false); });
     }
+}
+
+[Serializable]
+public struct UIScreenInfo
+{
+    public Screens screenKey;
+    public UIScreen screen;
 }

@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,12 +18,16 @@ public class GameModeSelector : BaseScreen
         #region MainButtons
         UtilitiesUI.GetComponentByName<Button>(mainButtons, "PlayFriend").onClick.AddListener(() =>
         {
+            SoundManager.Instance.PlaySound(SoundType.ButtonClick);
+
             GameManager.Instance.SetCurrentGameMode(GameMode.FRIEND);
             DefaultSettings();
         });
 
         UtilitiesUI.GetComponentByName<Button>(mainButtons, "PlayAI").onClick.AddListener(() =>
         {
+            SoundManager.Instance.PlaySound(SoundType.ButtonClick);
+
             GameManager.Instance.SetCurrentGameMode(GameMode.AI);
             DefaultSettings();
             GameObject ai = new GameObject("AI");
@@ -32,18 +37,32 @@ public class GameModeSelector : BaseScreen
 
         UtilitiesUI.GetComponentByName<Button>(mainButtons, "Back").onClick.AddListener(() =>
         {
+            SoundManager.Instance.PlaySound(SoundType.ButtonClick);
+
             currentScreen.ChangeScreens(Screens.MainMenu);
         });
         UtilitiesUI.GetComponentByName<Button>(mainButtons, "Easy").onClick.AddListener(() =>
         {
+            SoundManager.Instance.PlaySound(SoundType.ButtonClick);
+
+            ToggleDifficultyDisplay(GameDifficulty.EASY);
+
             GameManager.Instance.SetCurrentDifficulty(GameDifficulty.EASY);
         });
         UtilitiesUI.GetComponentByName<Button>(mainButtons, "Normal").onClick.AddListener(() =>
         {
+            SoundManager.Instance.PlaySound(SoundType.ButtonClick);
+
+            ToggleDifficultyDisplay(GameDifficulty.NORMAL);
+
             GameManager.Instance.SetCurrentDifficulty(GameDifficulty.NORMAL);
         });
         UtilitiesUI.GetComponentByName<Button>(mainButtons, "Hard").onClick.AddListener(() =>
         {
+            SoundManager.Instance.PlaySound(SoundType.ButtonClick);
+
+            ToggleDifficultyDisplay(GameDifficulty.HARD);
+
             GameManager.Instance.SetCurrentDifficulty(GameDifficulty.HARD);
         });
         #endregion
@@ -82,5 +101,29 @@ public class GameModeSelector : BaseScreen
         turnManager.StartTurn();
 
         currentScreen.ChangeScreens(Screens.Game);
+    }
+
+    private void ToggleDifficultyDisplay(GameDifficulty difficulty)
+    {
+        TMP_Text easyText = mainButtons.transform.Find("Easy").GetComponentInChildren<TMP_Text>();
+        TMP_Text normalText = mainButtons.transform.Find("Normal").GetComponentInChildren<TMP_Text>();
+        TMP_Text hardText = mainButtons.transform.Find("Hard").GetComponentInChildren<TMP_Text>();
+
+        easyText.text = "";
+        normalText.text = "";
+        hardText.text = "";
+
+        switch (difficulty)
+        {
+            case GameDifficulty.EASY:
+                easyText.text = "X";
+                break;
+            case GameDifficulty.NORMAL:
+                normalText.text = "X";
+                break;
+            case GameDifficulty.HARD:
+                hardText.text = "X";
+                break;
+        }
     }
 }

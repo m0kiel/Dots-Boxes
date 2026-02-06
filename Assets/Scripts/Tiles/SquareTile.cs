@@ -24,6 +24,11 @@ public class SquareTile : MonoBehaviour
 
     public void CompleteSquare(Color teamColor)
     {
+        SoundManager.Instance.PlaySound(SoundType.CompleteSquare);
+
+        ParticleManager.Instance.SpawnWorldSpaceParticle(ParticleType.CompleteSquare, transform.position);
+
+
         GetComponent<SpriteRenderer>().color = teamColor; // Green
     }    
 

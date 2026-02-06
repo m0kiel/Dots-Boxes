@@ -18,10 +18,14 @@ public class MainMenuScreen : BaseScreen
         #region MainButtons
         UtilitiesUI.GetComponentByName<Button>(mainButtons, "Play").onClick.AddListener(() =>
         {
+            SoundManager.Instance.PlaySound(SoundType.ButtonClick);
+
             currentScreen.ChangeScreens(Screens.GameModeSelector);
         });
         UtilitiesUI.GetComponentByName<Button>(mainButtons, "Options").onClick.AddListener(() =>
         {
+            SoundManager.Instance.PlaySound(SoundType.ButtonClick);
+
             currentScreen.ChangeScreens(Screens.Options);
         });
         #endregion

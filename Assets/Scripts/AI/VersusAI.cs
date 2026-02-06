@@ -36,7 +36,7 @@ public class VersusAI : Singleton<VersusAI>
         if (squareTile != null)
         {
             remainingSquareLines = squareTile.GetRemainingLineSides();
-            remainingSquareLines[0].ToggleLine(TeamInteraction.RED);
+            StartCoroutine(remainingSquareLines[0].ToggleLine(TeamInteraction.RED));
             return;
         }
 
@@ -51,8 +51,9 @@ public class VersusAI : Singleton<VersusAI>
             }
         }
 
+        int preventStuck = 5;
         // Find an available tile to place a line
-        while (true)
+        while (preventStuck > 0)
         {
             squareTile = boardManager.GetRandomSquareTile(index);
 
@@ -60,11 +61,12 @@ public class VersusAI : Singleton<VersusAI>
             {
                 Debug.Log("Done");
                 remainingSquareLines = squareTile.GetRemainingLineSides();
-                remainingSquareLines[Random.Range(0, remainingSquareLines.Count)].ToggleLine(TeamInteraction.RED);
+                StartCoroutine(remainingSquareLines[Random.Range(0, remainingSquareLines.Count)].ToggleLine(TeamInteraction.RED));
                 break;
             }
             else
             {
+                preventStuck--;
                 index--;
 
                 if (index < 1)
@@ -73,5 +75,6 @@ public class VersusAI : Singleton<VersusAI>
                 }
             }
         }
+        Debug.Log("Exited Loop");
     }
 }

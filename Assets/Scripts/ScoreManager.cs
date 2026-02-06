@@ -50,8 +50,6 @@ public class ScoreManager : Singleton<ScoreManager>
         int maxPoints = GameManager.Instance.GetMaxPoints();
         if (blueTeamPoints + redTeamPoints < maxPoints) { return; }
 
-        Debug.Log("GAME ENDED: " + blueTeamPoints + " : " + redTeamPoints);
-
         UIScreenHelper.Instance.GetScreen(Screens.Game).ChangeScreens(Screens.EndGame);
     }
     public Team GetWinner()

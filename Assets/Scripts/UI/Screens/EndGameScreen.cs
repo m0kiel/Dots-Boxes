@@ -22,6 +22,8 @@ public class EndGameScreen : BaseScreen
         #region MainButtons
         UtilitiesUI.GetComponentByName<Button>(mainButtons, "MainMenu").onClick.AddListener(() =>
         {
+            SoundManager.Instance.PlaySound(SoundType.ButtonClick);
+
             currentScreen.ChangeScreens(Screens.MainMenu);
         });
         #endregion
@@ -38,14 +40,33 @@ public class EndGameScreen : BaseScreen
 
         switch (winner)
         {
+            case Team.NONE:
+                {
+                    SoundManager.Instance.PlaySound(SoundType.Draw);
+                    break;
+                }
             case Team.BLUE:
-                winnerColor = winBlueColor;
-                winnerText = "BLUE WON";
-                break;
+                {
+                    SoundManager.Instance.PlaySound(SoundType.Win);
+                    winnerColor = winBlueColor;
+                    winnerText = "BLUE WON";
+                    break;
+                }
             case Team.RED:
-                winnerColor = winRedColor;
-                winnerText = "RED WON";
-                break;
+                {
+                    if (GameManager.Instance.CurrentGameMode == GameMode.AI)
+                    {
+                        SoundManager.Instance.PlaySound(SoundType.Lose);
+                    }
+                    else if(GameManager.Instance.CurrentGameMode == GameMode.FRIEND)
+                    {
+                        SoundManager.Instance.PlaySound(SoundType.Win);
+                    }
+
+                    winnerColor = winRedColor;
+                    winnerText = "RED WON";
+                    break;
+                }
         }
 
         UtilitiesUI.GetComponentByName<Image>(gameObject,"Background").color = winnerColor;

@@ -17,6 +17,8 @@ public class GameOptionsScreen : BaseScreen
         #region MainButtons
         UtilitiesUI.GetComponentByName<Button>(mainButtons, "Resume").onClick.AddListener(() =>
         {
+            SoundManager.Instance.PlaySound(SoundType.ButtonClick);
+
             currentScreen.ChangeScreens(Screens.Game);
             GameObject grid = GameObject.Find("Grid");
             for (int i = 0; i < grid.transform.childCount; i++)
@@ -26,6 +28,8 @@ public class GameOptionsScreen : BaseScreen
         });
         UtilitiesUI.GetComponentByName<Button>(mainButtons, "Exit").onClick.AddListener(() =>
         {
+            SoundManager.Instance.PlaySound(SoundType.ButtonClick);
+
             BoardManager.Instance.DeleteBoard();
             currentScreen.ChangeScreens(Screens.MainMenu);
         });
