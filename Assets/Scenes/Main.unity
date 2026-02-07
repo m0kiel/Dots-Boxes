@@ -1610,6 +1610,7 @@ GameObject:
   - component: {fileID: 349251648}
   - component: {fileID: 349251647}
   - component: {fileID: 349251646}
+  - component: {fileID: 349251649}
   m_Layer: 5
   m_Name: SkipTurn
   m_TagString: Untagged
@@ -1719,6 +1720,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 349251644}
   m_CullTransparentMesh: 1
+--- !u!114 &349251649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 349251644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff115e3ae6662604cab4de3ab053b255, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SkipTurnButton
 --- !u!1 &354510169
 GameObject:
   m_ObjectHideFlags: 0
