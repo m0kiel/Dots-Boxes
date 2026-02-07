@@ -28,6 +28,7 @@ public class OptionsScreen : BaseScreen
 
     public override void OnGameObjectEnabled()
     {
+
     }
     public override void OnGameObjectDisabled()
     {

@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class SkipTurnButton : MonoBehaviour
 {
-    [SerializeField] private Button button;
+    private Button button;
 
     private void Events_SkipTurnPressed(object sender, TurnManager.SkipTurnPressedEventArgs e)
     {
@@ -26,6 +26,8 @@ public class SkipTurnButton : MonoBehaviour
 
     private void OnEnable()
     {
+        button = GetComponent<Button>();
+
         TurnManager.SkipTurnPressedEvent += Events_SkipTurnPressed;
         TurnManager.CheckSkipTurnStateEvent += Events_CheckSkipTurnState;
 

@@ -5,23 +5,48 @@ using UnityEngine.UI;
 public class SliderValueToText : MonoBehaviour
 {
     [SerializeField] bool isMusicSlider;
-    private void Start()
+
+    [SerializeField] TMP_Text textBox;
+
+    private void Awake()
     {
-        TMP_Text textBox = transform.Find("TextBox").GetChild(0).GetComponent<TMP_Text>();
+        if (isMusicSlider)
+        {
+            SetSoundVolumeToText(SoundManager.Instance.CurrentMasterVolume);
+        }
+
         GetComponent<Slider>().onValueChanged.AddListener(num => 
         {
             SoundManager.Instance.PlaySound(SoundType.SliderSlide);
 
-            if (isMusicSlider)
-            {
-                num *= 100;
-                int numToDisplay = (int)num;
-                textBox.SetText(numToDisplay.ToString());
-            }
-            else
-            {
-                textBox.SetText(num.ToString());
-            }
+            SetSoundVolumeToText(num);
         });
+    }
+
+    private void OnEnable()
+    {
+        if (!isMusicSlider) { return; }
+        GetComponent<Slider>().value = SoundManager.Instance.CurrentMasterVolume;
+        SetSoundVolumeToText(GetComponent<Slider>().value);
+    }
+
+    private void OnDisable()
+    {
+        if (!isMusicSlider) { return; }
+        SoundManager.Instance.SetMasterVolume(GetComponent<Slider>().value);
+    }
+
+    private void SetSoundVolumeToText(float amount)
+    {
+        if (isMusicSlider)
+        {
+            amount *= 100;
+            int numToDisplay = (int)amount;
+            textBox.SetText(numToDisplay.ToString());
+        }
+        else
+        {
+            textBox.SetText(amount.ToString());
+        }
     }
 }

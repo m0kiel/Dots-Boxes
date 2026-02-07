@@ -33,7 +33,7 @@ public class AchievementsManager : Singleton<AchievementsManager>
 
             GameObject popupAchievements = GameObject.Find("UI").transform.Find("EndGame").Find("PopupAchievements").gameObject;
             GameObject achievementPopup = Instantiate(achievementPopupPrefab, popupAchievements.transform);
-            achievementPopup.transform.Find("Title").GetComponent<TMP_Text>().text = achievementTitle.ToString() + "\nUNLOCKED";
+            achievementPopup.transform.Find("Title").GetComponent<TMP_Text>().text = GetAchievementToString(achievementTitle) + "\nUNLOCKED";
         }
     }
 
