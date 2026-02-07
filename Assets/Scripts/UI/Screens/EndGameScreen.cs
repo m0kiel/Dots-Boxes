@@ -8,9 +8,9 @@ public class EndGameScreen : BaseScreen
 
     private UIScreen currentScreen;
 
-    [SerializeField] Color drawColor;
-    [SerializeField] Color winBlueColor;
-    [SerializeField] Color winRedColor;
+    [SerializeField] private Color drawColor;
+    [SerializeField] private Color winBlueColor;
+    [SerializeField] private Color winRedColor;
 
     private void Awake()
     {
@@ -113,7 +113,7 @@ public class EndGameScreen : BaseScreen
             }
         }
 
-        // TeamPoints.x = BlueTeam
+        // TeamPoints.x => BlueTeam
         if (ScoreManager.Instance.GetTeamPoints().x == GameManager.Instance.GetMaxPoints())
         {
             achievementsManager.CompleteAchievement(Achievement.WinFlawlessAI);

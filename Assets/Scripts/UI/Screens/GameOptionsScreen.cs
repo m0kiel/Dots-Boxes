@@ -34,8 +34,6 @@ public class GameOptionsScreen : BaseScreen
             currentScreen.ChangeScreens(Screens.MainMenu);
         });
         #endregion
-
-        //OnGameObjectEnabled();
     }
 
     public override void OnGameObjectEnabled()

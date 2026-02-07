@@ -4,9 +4,9 @@ using UnityEngine.UI;
 
 public class SliderValueToText : MonoBehaviour
 {
-    [SerializeField] bool isMusicSlider;
+    [SerializeField] private bool isMusicSlider;
 
-    [SerializeField] TMP_Text textBox;
+    [SerializeField] private TMP_Text textBox;
 
     private void Awake()
     {

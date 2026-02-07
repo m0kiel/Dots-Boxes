@@ -73,17 +73,6 @@ public class GameModeSelector : BaseScreen
             GameManager.Instance.SetCurrentDifficulty(GameDifficulty.HARD);
         });
         #endregion
-
-        //OnGameObjectEnabled();
-    }
-
-    public override void OnGameObjectEnabled()
-    {
-
-    }
-    public override void OnGameObjectDisabled()
-    {
-
     }
 
     private void DefaultSettings()
@@ -105,9 +94,6 @@ public class GameModeSelector : BaseScreen
         // Start Initializing variables
         gameManager.SetBoardSize(boardWidth, boardHeight);
         boardManager.InitBoard();
-        turnManager.StartTurn();
-
-        
 
         currentScreen.ChangeScreens(Screens.Game);
     }
@@ -134,5 +120,14 @@ public class GameModeSelector : BaseScreen
                 hardText.text = "X";
                 break;
         }
+    }
+
+    public override void OnGameObjectEnabled()
+    {
+
+    }
+    public override void OnGameObjectDisabled()
+    {
+
     }
 }

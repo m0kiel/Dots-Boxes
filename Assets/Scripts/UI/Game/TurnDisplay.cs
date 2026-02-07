@@ -3,8 +3,8 @@ using UnityEngine.UI;
 
 public class TurnDisplay : MonoBehaviour
 {
-    [SerializeField] Color blueTeam;
-    [SerializeField] Color redTeam;
+    [SerializeField] private Color blueTeam;
+    [SerializeField] private Color redTeam;
 
     private void Events_DisplayTurn(object sender, TurnManager.DisplayTurnEventArgs e)
     {

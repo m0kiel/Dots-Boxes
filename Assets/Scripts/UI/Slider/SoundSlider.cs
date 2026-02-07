@@ -1,10 +1,9 @@
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class SoundSlider : MonoBehaviour
 {
-    [SerializeField] MixerGroupType mixerGroupType;
+    [SerializeField] private MixerGroupType mixerGroupType;
 
     private void Start()
     {

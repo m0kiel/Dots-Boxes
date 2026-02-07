@@ -1,7 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using NUnit.Framework;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -11,23 +9,12 @@ public enum LineOwner { NONE = 0, BLUE = 1, RED = 2 }
 
 public class SquareLine : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
-    [SerializeField] List<SquareTile> squareTiles = new();
-    [SerializeField] SquareLineSide side;
+    [SerializeField] private List<SquareTile> squareTiles = new();
+    [SerializeField] private SquareLineSide side;
 
-    LineOwner owner = LineOwner.NONE;
+    private LineOwner owner = LineOwner.NONE;
 
-    bool isSquareCompleted = false;
-
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    private bool isSquareCompleted = false;
 
     public void OnPointerClick(PointerEventData eventData)
     {

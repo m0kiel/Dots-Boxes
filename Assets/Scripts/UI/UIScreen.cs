@@ -5,13 +5,13 @@ using UnityEngine;
 public enum Screens { MainMenu, Options, GameModeSelector, Game, GameOptions, EndGame, Achievements }
 public class UIScreen : MonoBehaviour
 {
-    [SerializeField] Screens thisScreenKey;
-
-    private List<GameObject> elements = new();
+    [SerializeField] private Screens thisScreenKey;
 
     [SerializeField] private List<UIScreenInfo> uiScreensInfoList;
     private Dictionary<Screens, UIScreen> screenConections = new();
     
+    private List<GameObject> elements = new();
+
     void Awake()
     {
         UIScreenHelper.Instance.AddScreen(thisScreenKey, this);

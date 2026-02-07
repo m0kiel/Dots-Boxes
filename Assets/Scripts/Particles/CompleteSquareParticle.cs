@@ -1,14 +1,13 @@
-using System.Collections;
 using TMPro;
 using UnityEngine;
 
 public class CompleteSquareParticle : BaseParticle
 {
-    [SerializeField] AnimationCurve scaleCurve;
-    TMP_Text textBox;
+    [SerializeField] private AnimationCurve scaleCurve;
+    private TMP_Text textBox;
 
-    float textFontSize = 60f;
-    float currentLife = 0;
+    private float textFontSize = 60f;
+    private float currentLife = 0;
 
     private void Awake()
     {

@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class WrongInteractionParticle : BaseParticle
 {
-    [SerializeField] AnimationCurve scaleCurve;
-    TMP_Text textBox;
+    [SerializeField] private AnimationCurve scaleCurve;
+    private TMP_Text textBox;
 
-    float textFontSize = 40f;
-    float currentLife = 0;
+    private float textFontSize = 40f;
+    private float currentLife = 0;
 
     private void Awake()
     {
