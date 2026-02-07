@@ -102,12 +102,15 @@ public class EndGameScreen : BaseScreen
         }
         else if (GameManager.Instance.CurrentDifficulty == GameDifficulty.NORMAL)
         {
+            Debug.Log("NORMAL " + GameManager.Instance.CurrentDifficulty.ToString());
             achievementsManager.CompleteAchievement(Achievement.WinNormalAI);
         }
         else if (GameManager.Instance.CurrentDifficulty == GameDifficulty.HARD)
         {
+            Debug.Log("HARD " + GameManager.Instance.CurrentDifficulty.ToString());
+
             achievementsManager.CompleteAchievement(Achievement.WinHardAI);
-            if (GameManager.Instance.GetTeamRemoveLineRemaining(Team.BLUE) > 0 && GameManager.Instance.GetTeamCanSkipTurn(Team.BLUE))
+            if (GameManager.Instance.GetTeamRemoveLineRemaining(Team.BLUE) > 0 && GameManager.Instance.GetBlueCanSkipTurn())
             {
                 achievementsManager.CompleteAchievement(Achievement.WinPerfectHardAI);
             }

@@ -76,6 +76,14 @@ public class GameManager : Singleton<GameManager>
         return team == Team.BLUE ? blueCanSkipTurn : redCanSkipTurn;
     }
 
+    public bool GetBlueCanSkipTurn()
+    { 
+        return blueCanSkipTurn; 
+    }
+
+    public bool GetRedCanSkipTurn()
+    { return redCanSkipTurn; }
+
     public void DisableTeamCanSkipTurn(Team team)
     {
         if (team == Team.BLUE)
