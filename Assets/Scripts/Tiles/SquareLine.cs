@@ -119,21 +119,18 @@ public class SquareLine : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
 
     public void UpdateSquareTile(Team player)
     {
-        //bool hasCompletedSquare = false;
         for (int i = 0; i < squareTiles.Count; i++) 
         {
             if (squareTiles[i].GetNumRemainingLineSides() == 0)
             {
                 isSquareCompleted = true;
-                squareTiles[i].CompleteSquare(GetComponent<SpriteRenderer>().color);
+                squareTiles[i].CompleteSquare(GameManager.Instance.GetCompleteTeamColor(player));
 
                 ScoreManager.Instance.AddPoint(player);
                 ScoreManager.Instance.CheckEndGame();
-                //hasCompletedSquare = true;
             }
         }
 
-        //if (!hasCompletedSquare)
         if (!isSquareCompleted)
         {
             TurnManager.Instance.ChangeTurn();
@@ -162,11 +159,7 @@ public class SquareLine : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
             return;
         }
 
-        if (team == TeamInteraction.BLUE) 
-        { teamColor = new Color(0, 0, 255, 255); }
-
-        else // Red 
-        { teamColor = new Color(255, 0, 0, 255); }
+        teamColor = GameManager.Instance.GetTeamColor((Team)team);
 
         GetComponent<SpriteRenderer>().color = teamColor;
     }
