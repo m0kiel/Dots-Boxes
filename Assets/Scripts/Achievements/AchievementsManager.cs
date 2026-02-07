@@ -12,13 +12,11 @@ public class AchievementsManager : Singleton<AchievementsManager>
 
     private void Awake()
     {
-        Debug.Log("BEFORE");
         achievementToString.Add(Achievement.WinEasyAI, "EASY WIN");
         achievementToString.Add(Achievement.WinNormalAI, "NORMAL WIN");
         achievementToString.Add(Achievement.WinHardAI, "HARD WIN");
         achievementToString.Add(Achievement.WinFlawlessAI, "FLAWLESS WIN");
         achievementToString.Add(Achievement.WinPerfectHardAI, "PERFECT HARD WIN");
-        Debug.Log("AFTER");
     }
 
     public List<AchievementsData> GetAchievementsList()

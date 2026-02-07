@@ -17,6 +17,11 @@ public class GameManager : Singleton<GameManager>
     Vector2 boardSize = new(6, 6);
     public Vector2 BoardSize { get { return boardSize; } }
 
+    [SerializeField] private Color blueTeamColor;
+    [SerializeField] private Color redTeamColor;
+
+    [SerializeField] private Color blueCompleteTeamColor;
+    [SerializeField] private Color redCompleteTeamColor;
 
     // Original Features
 
@@ -134,5 +139,14 @@ public class GameManager : Singleton<GameManager>
 
         blueCanSkipTurn = true;
         redCanSkipTurn = true;
+    }
+
+    public Color GetTeamColor(Team team)
+    {
+        return team ==Team.BLUE ? blueTeamColor : redTeamColor;
+    }
+    public Color GetCompleteTeamColor(Team team)
+    {
+        return team == Team.BLUE ? blueCompleteTeamColor : redCompleteTeamColor;
     }
 }
