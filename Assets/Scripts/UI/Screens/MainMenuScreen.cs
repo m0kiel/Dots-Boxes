@@ -28,6 +28,13 @@ public class MainMenuScreen : BaseScreen
 
             currentScreen.ChangeScreens(Screens.Options);
         });
+
+        UtilitiesUI.GetComponentByName<Button>(mainButtons, "Achievements").onClick.AddListener(() =>
+        {
+            SoundManager.Instance.PlaySound(SoundType.ButtonClick);
+
+            currentScreen.ChangeScreens(Screens.Achievements);
+        });
         #endregion
 
         //OnGameObjectEnabled();
