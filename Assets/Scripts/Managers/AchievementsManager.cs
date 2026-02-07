@@ -23,7 +23,8 @@ public class AchievementsManager : Singleton<AchievementsManager>
 
     public int IsAchievementCompleted(Achievement achievementTitle)
     {
-        return PlayerPrefs.GetInt(achievementTitle.ToString());
+        int titleint = PlayerPrefs.GetInt(achievementTitle.ToString());
+        return titleint;
     }
 
     public List<AchievementsData> GetAchievementsList()
