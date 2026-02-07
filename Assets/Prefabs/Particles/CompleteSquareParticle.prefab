@@ -93,8 +93,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60
-  m_fontSizeBase: 60
+  m_fontSize: 0
+  m_fontSizeBase: 0
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -169,39 +169,6 @@ MonoBehaviour:
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  alphaCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0.0000010174699
-      value: 1.0023816
-      inSlope: -0.013635671
-      outSlope: -0.013635671
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.35000005
-    - serializedVersion: 3
-      time: 0.68445563
-      value: 0.8686582
-      inSlope: -0.4683624
-      outSlope: -0.4683624
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.17829278
-      outWeight: 0.49038762
-    - serializedVersion: 3
-      time: 1.0043316
-      value: 0
-      inSlope: -7.009909
-      outSlope: -7.009909
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.052154053
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
