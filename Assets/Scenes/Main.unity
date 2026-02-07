@@ -224,6 +224,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SliderValueToText
   isMusicSlider: 0
+  textBox: {fileID: 1421112744}
 --- !u!1 &84361260
 GameObject:
   m_ObjectHideFlags: 0
@@ -762,6 +763,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SliderValueToText
   isMusicSlider: 1
+  textBox: {fileID: 765800883}
 --- !u!114 &197077258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8368,6 +8370,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SliderValueToText
   isMusicSlider: 0
+  textBox: {fileID: 1955510509}
 --- !u!1 &1389158270
 GameObject:
   m_ObjectHideFlags: 0
@@ -9573,6 +9576,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SliderValueToText
   isMusicSlider: 1
+  textBox: {fileID: 1179056010}
 --- !u!114 &1502194868
 MonoBehaviour:
   m_ObjectHideFlags: 0

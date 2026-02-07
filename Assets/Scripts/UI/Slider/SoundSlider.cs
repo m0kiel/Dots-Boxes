@@ -13,4 +13,14 @@ public class SoundSlider : MonoBehaviour
             SoundManager.Instance.GetAudioMixerGroup(mixerGroupType).audioMixer.SetFloat("MasterVolume", Mathf.Log10(num) * 20.0f);
         });
     }
+
+    private void OnEnable()
+    {
+        GetComponent<Slider>().value = SoundManager.Instance.CurrentMasterVolume;
+    }
+
+    private void OnDisable()
+    {
+        SoundManager.Instance.SetMasterVolume(GetComponent<Slider>().value);
+    }
 }
