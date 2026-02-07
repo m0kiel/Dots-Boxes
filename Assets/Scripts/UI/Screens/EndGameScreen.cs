@@ -75,9 +75,41 @@ public class EndGameScreen : BaseScreen
         UtilitiesUI.GetComponentByName<TMP_Text>(transform.Find("Texts").gameObject, "Win").text = winnerText;
         UtilitiesUI.GetComponentByName<TMP_Text>(transform.Find("Texts").Find("BlueScore").gameObject, "Text").text = teamPoints[0].ToString();
         UtilitiesUI.GetComponentByName<TMP_Text>(transform.Find("Texts").Find("RedScore").gameObject, "Text").text = teamPoints[1].ToString();
+
+        CheckAchievements();
     }
     public override void OnGameObjectDisabled()
     {
 
     }
+
+    public void CheckAchievements()
+    {
+        if (GameManager.Instance.CurrentGameMode == GameMode.FRIEND) { return; }
+
+        AchievementsManager achievementsManager = AchievementsManager.Instance;
+
+        if (GameManager.Instance.CurrentDifficulty == GameDifficulty.EASY)
+        {
+            achievementsManager.CompleteAchievement(Achievement.WinEasyAI);
+        }
+        else if (GameManager.Instance.CurrentDifficulty == GameDifficulty.NORMAL)
+        {
+            achievementsManager.CompleteAchievement(Achievement.WinNormalAI);
+        }
+        else if (GameManager.Instance.CurrentDifficulty == GameDifficulty.HARD)
+        {
+            achievementsManager.CompleteAchievement(Achievement.WinHardAI);
+            if (GameManager.Instance.GetTeamRemoveLineRemaining(Team.BLUE) > 0 && GameManager.Instance.GetTeamCanSkipTurn(Team.BLUE))
+            {
+                achievementsManager.CompleteAchievement(Achievement.WinPerfectHardAI);
+            }
+        }
+
+        // TeamPoints.x = BlueTeam
+        if (ScoreManager.Instance.GetTeamPoints().x == GameManager.Instance.GetMaxPoints())
+        {
+            achievementsManager.CompleteAchievement(Achievement.WinFlawlessAI);
+        }
+    }    
 }

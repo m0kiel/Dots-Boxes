@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
-public enum SoundType { CompleteSquare, PlaceLine, ButtonClick, SliderSlide, Win, Lose, Draw, WrongInteraction, RemoveLine }
+public enum SoundType { CompleteSquare, PlaceLine, ButtonClick, SliderSlide, Win, Lose, Draw, WrongInteraction, RemoveLine, AchievementCompleted }
 public enum MixerGroupType { Master }
 
 public class SoundManager : Singleton<SoundManager>

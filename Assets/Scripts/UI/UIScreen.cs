@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Screens { MainMenu, Options, GameModeSelector, Game, GameOptions, EndGame }
+public enum Screens { MainMenu, Options, GameModeSelector, Game, GameOptions, EndGame, Achievements }
 public class UIScreen : MonoBehaviour
 {
     [SerializeField] Screens thisScreenKey;
