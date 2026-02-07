@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-public enum Achievement { WinEasyAI = 1, WinNormalAI = 2, WinHardAI = 3, WinFlawlessAI = 4, WinPerfectHardAI = 5 }
+public enum Achievement { WinEasyAI = 0, WinNormalAI = 1, WinHardAI = 2, WinFlawlessAI = 3, WinPerfectHardAI = 4 }
 public class AchievementsManager : Singleton<AchievementsManager>
 {
     [SerializeField] private List<AchievementsData> achievementsList = new();
