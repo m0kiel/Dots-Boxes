@@ -1,8 +1,5 @@
 using System;
-using JetBrains.Annotations;
-using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class ScoreManager : Singleton<ScoreManager>
 {
@@ -18,18 +15,9 @@ public class ScoreManager : Singleton<ScoreManager>
 
     #endregion
 
-    int blueTeamPoints = 0;
-    int redTeamPoints = 0;
+    private int blueTeamPoints = 0;
+    private int redTeamPoints = 0;
 
-    
-
-    public void ResetScore()
-    {
-        blueTeamPoints = 0;
-        redTeamPoints = 0;
-        InvokeChangeTeamScoreDisplay(gameObject, blueTeamPoints, Team.BLUE);
-        InvokeChangeTeamScoreDisplay(gameObject, redTeamPoints, Team.RED);
-    }
 
     public void AddPoint(Team player)
     {
@@ -70,5 +58,14 @@ public class ScoreManager : Singleton<ScoreManager>
     }
 
     public Vector2 GetTeamPoints()
-    { return new Vector2(blueTeamPoints, redTeamPoints);}    
+    { 
+        return new Vector2(blueTeamPoints, redTeamPoints);
+    }
+    public void ResetScore()
+    {
+        blueTeamPoints = 0;
+        redTeamPoints = 0;
+        InvokeChangeTeamScoreDisplay(gameObject, blueTeamPoints, Team.BLUE);
+        InvokeChangeTeamScoreDisplay(gameObject, redTeamPoints, Team.RED);
+    }
 }

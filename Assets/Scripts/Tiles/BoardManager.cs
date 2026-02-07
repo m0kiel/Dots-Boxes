@@ -1,36 +1,14 @@
-using System;
 using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class BoardManager : Singleton<BoardManager>
 {
-    #region EVENTS
-    public static event EventHandler<ChangeLineStateEventArgs> ChangeLineState;
+    [SerializeField] private List<GameObject> tilePrefabs = new();
 
-    public class ChangeLineStateEventArgs : EventArgs { public SquareLine line; public bool state; }
+    private List<List<GameObject>> board = new();
 
-    public static void InvokeChangeLineState(GameObject sender, SquareLine newLine, bool newState)
-    {
-        ChangeLineState?.Invoke(sender, new ChangeLineStateEventArgs { line = newLine, state = newState });
-    }
-    private void Events_ChangeLineState(object sender, ChangeLineStateEventArgs e)
-    {
-        
-    }
-    #endregion
-
-    [SerializeField] List<GameObject> tilePrefabs = new();
-
-    List<List<GameObject>> board = new();
-
-    float tileZoom = 3.5f;
-
-    void Start()
-    {
-        
-    }
+    private float tileZoom = 3.5f;
 
     public void InitBoard()
     {
@@ -41,11 +19,6 @@ public class BoardManager : Singleton<BoardManager>
         ResetPrefabScale();
     }    
 
-    public void DeleteBoard()
-    {
-        Destroy(board[0][0].transform.parent.gameObject);
-        board.Clear();
-    }
 
     public void CreateBoard()
     {
@@ -128,6 +101,7 @@ public class BoardManager : Singleton<BoardManager>
             }
         }
 
+        // Debug Connections
         //for (int y = 0; y < board.Count; y++)
         //{
         //    for (int x = 0; x < board[0].Count; x++)
@@ -135,6 +109,12 @@ public class BoardManager : Singleton<BoardManager>
         //        board[y][x].GetComponentInChildren<SquareTile>().Debug_PrintStatus();
         //    }
         //}
+    }
+
+    public void DeleteBoard()
+    {
+        Destroy(board[0][0].transform.parent.gameObject);
+        board.Clear();
     }
 
     void ChangeTileScale()

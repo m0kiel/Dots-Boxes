@@ -1,9 +1,8 @@
 using System.Collections.Generic;
-using UnityEngine;
 
 public class UIScreenHelper : Singleton<UIScreenHelper>
 {
-    Dictionary<Screens, UIScreen> screens = new();
+    private Dictionary<Screens, UIScreen> screens = new();
 
     public void AddScreen(Screens key, UIScreen screen)
     {
@@ -14,5 +13,4 @@ public class UIScreenHelper : Singleton<UIScreenHelper>
     {
         return screens[key];
     }
-
 }

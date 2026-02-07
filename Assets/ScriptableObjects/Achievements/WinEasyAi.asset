@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bec20b164f2c31c4c8ef26a9d73b6442, type: 3}
   m_Name: WinEasyAi
   m_EditorClassIdentifier: Assembly-CSharp::AchievementsData
-  title: 1
+  achievement: 1
+  title: EASY WIN
   description: WIN AGAINST THE AI IN EASY

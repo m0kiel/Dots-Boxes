@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bec20b164f2c31c4c8ef26a9d73b6442, type: 3}
   m_Name: WinPerfectHardAI
   m_EditorClassIdentifier: Assembly-CSharp::AchievementsData
-  title: 5
+  achievement: 5
+  title: PERFECT HARD WIN
   description: WIN AGAINST THE AI IN HARD WITHOUT REMOVING LINES OR SKIPPING THE
     TURN

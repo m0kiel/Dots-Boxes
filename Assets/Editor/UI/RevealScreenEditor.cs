@@ -6,13 +6,10 @@ public class RevealScreenEditor : Editor
 {
     public override void OnInspectorGUI()
     {
-        // Dibuja el inspector por defecto
         DrawDefaultInspector();
 
-        // Referencia al script objetivo
         UIScreen miScript = (UIScreen)target;
 
-        // Añadir el botón
         if (GUILayout.Button("Toggle Visibility"))
         {
             miScript.ToggleScreenVisibilityEditor();

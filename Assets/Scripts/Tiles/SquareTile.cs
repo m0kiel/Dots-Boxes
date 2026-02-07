@@ -5,22 +5,8 @@ public enum SquareLineSide { TOP = 1, BOTTOM = -1, LEFT = 2, RIGHT = -2 };
 
 public class SquareTile : MonoBehaviour
 {
-    Dictionary<SquareLineSide, SquareLine> squareLineSides = new();
-    Dictionary<SquareLineSide, bool> squareLineSidesOccupied = new();
-
-    
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    private Dictionary<SquareLineSide, SquareLine> squareLineSides = new();
+    private Dictionary<SquareLineSide, bool> squareLineSidesOccupied = new();
 
     public void CompleteSquare(Color teamColor)
     {
@@ -75,7 +61,16 @@ public class SquareTile : MonoBehaviour
         return squareLineSides[side];
     }
 
-
+    public void SetOccupiedSide(SquareLine line, bool state)
+    {
+        foreach (var lines in squareLineSides)
+        {
+            if (lines.Value == line)
+            {
+                squareLineSidesOccupied[lines.Key] = state;
+            }
+        }
+    }
     public void Debug_PrintStatus()
     {
         string logMessage = "";
@@ -83,7 +78,7 @@ public class SquareTile : MonoBehaviour
         logMessage += squareLineSides[SquareLineSide.TOP].gameObject.transform.parent.name;
         foreach (SquareLineSide side in squareLineSides.Keys)
         {
-            
+
             logMessage += " Key: " + side + ", SquareTilesCount: " + squareLineSides[side].GetSquareTiles().Count;
 
             logMessage += " = ( ";
@@ -96,16 +91,5 @@ public class SquareTile : MonoBehaviour
         }
 
         Debug.Log(logMessage);
-    }
-
-    public void SetOccupiedSide(SquareLine line, bool state)
-    {
-        foreach (var lines in squareLineSides)
-        {
-            if (lines.Value == line)
-            {
-                squareLineSidesOccupied[lines.Key] = state;
-            }
-        }
     }
 }

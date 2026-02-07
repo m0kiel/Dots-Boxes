@@ -19,25 +19,10 @@ public class SkipTurnButton : MonoBehaviour
             gameManager.DisableTeamCanSkipTurn(Team.RED);
         }
     }
+
     private void Events_CheckSkipTurnState(object sender, TurnManager.CheckSkipTurnStateEventArgs e)
     {
         CheckSkipTurnState(TurnManager.Instance.CurrentTurn);
-    }
-
-    private void OnEnable()
-    {
-        button = GetComponent<Button>();
-
-        TurnManager.SkipTurnPressedEvent += Events_SkipTurnPressed;
-        TurnManager.CheckSkipTurnStateEvent += Events_CheckSkipTurnState;
-
-        CheckSkipTurnState(TurnManager.Instance.CurrentTurn);
-    }
-
-    private void OnDisable()
-    {
-        TurnManager.SkipTurnPressedEvent -= Events_SkipTurnPressed;
-        TurnManager.CheckSkipTurnStateEvent -= Events_CheckSkipTurnState;
     }
 
     private void SetDisplayButton(bool state)
@@ -61,5 +46,21 @@ public class SkipTurnButton : MonoBehaviour
         {
             SetDisplayButton(false);
         }
+    }
+
+    private void OnEnable()
+    {
+        button = GetComponent<Button>();
+
+        TurnManager.SkipTurnPressedEvent += Events_SkipTurnPressed;
+        TurnManager.CheckSkipTurnStateEvent += Events_CheckSkipTurnState;
+
+        CheckSkipTurnState(TurnManager.Instance.CurrentTurn);
+    }
+
+    private void OnDisable()
+    {
+        TurnManager.SkipTurnPressedEvent -= Events_SkipTurnPressed;
+        TurnManager.CheckSkipTurnStateEvent -= Events_CheckSkipTurnState;
     }
 }

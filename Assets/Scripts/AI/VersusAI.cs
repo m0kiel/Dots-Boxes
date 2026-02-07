@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class VersusAI : Singleton<VersusAI>
 {
-    GameDifficulty difficulty = GameDifficulty.NORMAL;
+    private GameDifficulty difficulty = GameDifficulty.NORMAL;
 
-    Dictionary<GameDifficulty, List<float>> choiceIntervals = new();
+    private Dictionary<GameDifficulty, List<float>> choiceIntervals = new();
 
     public void InitAI()
     {

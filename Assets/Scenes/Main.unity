@@ -6999,7 +6999,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14c2397a379590e4a967772a6b16674a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AchievementsScreen
-  achievementDisplayPrefab: {fileID: 4686143052589545289, guid: a3ebc30c7ff717042ac4c7710c4a9ec5, type: 3}
 --- !u!222 &1033995673
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12075,6 +12074,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ae8d0622ba8456749805fc3a60483d5b, type: 2}
   - {fileID: 11400000, guid: 1df7415cc91dc724da3765ca4bc6a002, type: 2}
   achievementPopupPrefab: {fileID: 773009314715531821, guid: c226669974ab43d4fb04c69f8749a6d1, type: 3}
+  achievementDisplayPrefab: {fileID: 4686143052589545289, guid: a3ebc30c7ff717042ac4c7710c4a9ec5, type: 3}
 --- !u!1 &1837203519
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,7 +16,7 @@ public class SoundManager : Singleton<SoundManager>
     [SerializeField] List<MixerGroupInfo> mixerGroupsInfoList;
     private Dictionary<MixerGroupType, AudioMixerGroup> mixers = new();
 
-    float currentMasterVolume = 1;
+    private float currentMasterVolume = 1;
     public float CurrentMasterVolume { get { return currentMasterVolume; } }
 
     private void Awake()
@@ -29,6 +29,11 @@ public class SoundManager : Singleton<SoundManager>
     {
         audioSource.outputAudioMixerGroup = mixers[soundClips[sound].mixerGroupType];
         audioSource.PlayOneShot(soundClips[sound].sound, soundClips[sound].volume);
+    }
+
+    public AudioMixerGroup GetAudioMixerGroup(MixerGroupType type)
+    {
+        return mixers[type];
     }
 
     private void SetMixers()
@@ -52,10 +57,7 @@ public class SoundManager : Singleton<SoundManager>
         currentMasterVolume = amount;
     }
 
-    public AudioMixerGroup GetAudioMixerGroup(MixerGroupType type)
-    {
-        return mixers[type];
-    }
+    
 }
 
 [Serializable]

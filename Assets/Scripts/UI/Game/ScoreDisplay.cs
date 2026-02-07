@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class ScoreDisplay : MonoBehaviour
 {
-    TMP_Text textBox;
+    private TMP_Text textBox;
 
-    [SerializeField] Team team;
+    [SerializeField] private Team team;
 
     private void Events_ChangeTeamScoreDisplay(object sender, ScoreManager.ChangeTeamScoreDisplayEventArgs e)
     {

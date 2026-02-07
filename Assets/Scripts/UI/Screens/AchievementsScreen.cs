@@ -11,8 +11,6 @@ public class AchievementsScreen : BaseScreen
 
     private GameObject achievementDisplayList;
 
-    [SerializeField] private GameObject achievementDisplayPrefab;
-
     private void Start()
     {
         currentScreen = GetComponent<UIScreen>();
@@ -33,16 +31,6 @@ public class AchievementsScreen : BaseScreen
         #endregion
     }
 
-    public override void OnGameObjectEnabled()
-    {
-        CheckForAchievementCompleted();
-
-    }
-    public override void OnGameObjectDisabled()
-    {
-
-    }
-
     private void DisplayAchievements()
     {
         AchievementsManager achievementsManager = AchievementsManager.Instance;
@@ -51,11 +39,11 @@ public class AchievementsScreen : BaseScreen
 
         for (int i = 0; i < achievementsList.Count; i++)
         {
-            GameObject achievement = Instantiate(achievementDisplayPrefab, achievementDisplayList.transform);
-            achievement.transform.Find("Title").GetComponent<TMP_Text>().text = achievementsManager.GetAchievementToString(achievementsList[i].title);
+            GameObject achievement = Instantiate(achievementsManager.GetAchievementDisplayPrefab(), achievementDisplayList.transform);
+            achievement.transform.Find("Title").GetComponent<TMP_Text>().text = achievementsList[i].title;
             achievement.transform.Find("Description").GetComponent<TMP_Text>().text = achievementsList[i].description;
 
-            bool isTickVisible = achievementsManager.IsAchievementCompleted(achievementsList[i].title) == 1 ? true : false;
+            bool isTickVisible = achievementsManager.IsAchievementCompleted(achievementsList[i].achievement) == 1 ? true : false;
 
             achievement.transform.Find("Tick").gameObject.SetActive(isTickVisible);
         }
@@ -70,9 +58,18 @@ public class AchievementsScreen : BaseScreen
         for (int i = 0; i < achievementDisplayList.transform.childCount; i++)
         {
             GameObject achievement = achievementDisplayList.transform.GetChild(i).gameObject;
-            bool isTickVisible = achievementsManager.IsAchievementCompleted(achievementsList[i].title) == 1 ? true : false;
+            bool isTickVisible = achievementsManager.IsAchievementCompleted(achievementsList[i].achievement) == 1 ? true : false;
 
             achievement.transform.Find("Tick").gameObject.SetActive(isTickVisible);
         }
+    }
+    public override void OnGameObjectEnabled()
+    {
+        CheckForAchievementCompleted();
+
+    }
+    public override void OnGameObjectDisabled()
+    {
+
     }
 }

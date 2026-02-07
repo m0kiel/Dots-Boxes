@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-
 
 public enum GameDifficulty { EASY = 3, NORMAL = 2, HARD = 1}
 public enum GameMode { AI, FRIEND }
@@ -8,13 +6,13 @@ public enum GameMode { AI, FRIEND }
 public enum Team { NONE = 0, BLUE = 1, RED = 2 }
 public class GameManager : Singleton<GameManager>
 {
-    [SerializeField] GameDifficulty currentDifficulty = GameDifficulty.NORMAL;
+    [SerializeField] private GameDifficulty currentDifficulty = GameDifficulty.NORMAL;
     public GameDifficulty CurrentDifficulty { get { return currentDifficulty; } }
 
-    GameMode currentGameMode = GameMode.AI;
+    private GameMode currentGameMode = GameMode.AI;
     public GameMode CurrentGameMode { get { return currentGameMode; } }
 
-    Vector2 boardSize = new(6, 6);
+    private Vector2 boardSize = new(6, 6);
     public Vector2 BoardSize { get { return boardSize; } }
 
     [SerializeField] private Color blueTeamColor;
@@ -24,7 +22,6 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private Color redCompleteTeamColor;
 
     // Original Features
-
     private int maxRemoveLine = 3;
     private int blueRemoveLineRemaining = 3;
     private int redRemoveLineRemaining = 3;
@@ -72,8 +69,6 @@ public class GameManager : Singleton<GameManager>
                 redLinesRemaining.transform.GetChild(i).gameObject.SetActive(true);
             }
         }
-
-        
     }
 
     public bool GetTeamCanSkipTurn(Team team)
@@ -93,8 +88,26 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    public int GetMaxPoints()
+    {
+        return (int)(boardSize.x * boardSize.y);
+    }
+    public Color GetTeamColor(Team team)
+    {
+        return team == Team.BLUE ? blueTeamColor : redTeamColor;
+    }
+    public Color GetCompleteTeamColor(Team team)
+    {
+        return team == Team.BLUE ? blueCompleteTeamColor : redCompleteTeamColor;
+    }
+
+    public void SetBoardSize(int width, int height)
+    {
+        boardSize = new(width, height);
+    }
+
     public void SetCurrentDifficulty(GameDifficulty difficulty)
-    { 
+    {
         currentDifficulty = difficulty;
         blueRemoveLineRemaining = (int)difficulty;
         redRemoveLineRemaining = (int)difficulty;
@@ -102,16 +115,6 @@ public class GameManager : Singleton<GameManager>
 
     public void SetCurrentGameMode(GameMode gameMode)
     { currentGameMode = gameMode; }
-
-    public int GetMaxPoints()
-    {
-        return (int)(boardSize.x * boardSize.y);
-    }
-
-    public void SetBoardSize(int width, int height)
-    {
-        boardSize = new(width, height);
-    }
 
     public void ResetGame()
     {
@@ -139,14 +142,5 @@ public class GameManager : Singleton<GameManager>
 
         blueCanSkipTurn = true;
         redCanSkipTurn = true;
-    }
-
-    public Color GetTeamColor(Team team)
-    {
-        return team ==Team.BLUE ? blueTeamColor : redTeamColor;
-    }
-    public Color GetCompleteTeamColor(Team team)
-    {
-        return team == Team.BLUE ? blueCompleteTeamColor : redCompleteTeamColor;
     }
 }

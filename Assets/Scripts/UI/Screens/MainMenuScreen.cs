@@ -1,4 +1,3 @@
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -36,8 +35,6 @@ public class MainMenuScreen : BaseScreen
             currentScreen.ChangeScreens(Screens.Achievements);
         });
         #endregion
-
-        //OnGameObjectEnabled();
     }
 
     public override void OnGameObjectEnabled()

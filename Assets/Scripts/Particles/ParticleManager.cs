@@ -5,22 +5,14 @@ using UnityEngine;
 public enum ParticleType { CompleteSquare, WrongInteraction }
 public class ParticleManager : Singleton<ParticleManager>
 {
-    [SerializeField] List<ParticleInfo> particleInfoList;
-    Dictionary<ParticleType, ParticleInfo> particles = new();
+    [SerializeField] private List<ParticleInfo> particleInfoList;
+    private Dictionary<ParticleType, ParticleInfo> particles = new();
 
     [SerializeField] private GameObject worldSpaceCanvas;
 
     private void Awake()
     {
         SetParticles();
-    }
-
-    private void SetParticles()
-    {
-        for (int i = 0; i < particleInfoList.Count; i++)
-        {
-            particles.Add(particleInfoList[i].particleType, particleInfoList[i]);
-        }
     }
 
     public void SpawnParticle(ParticleType particleType, Vector3 position)
@@ -39,6 +31,14 @@ public class ParticleManager : Singleton<ParticleManager>
 
         baseParticle.SetParticleLifeSpan(particles[particleType].particleLifeSpan);
         StartCoroutine(baseParticle.StartParticleLife());
+    }
+
+    private void SetParticles()
+    {
+        for (int i = 0; i < particleInfoList.Count; i++)
+        {
+            particles.Add(particleInfoList[i].particleType, particleInfoList[i]);
+        }
     }
 }
 
