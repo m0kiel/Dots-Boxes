@@ -90,7 +90,7 @@ public class EndGameScreen : BaseScreen
 
     public void CheckAchievements()
     {
-        if (ScoreManager.Instance.GetWinner() == Team.RED) { return; }
+        if (ScoreManager.Instance.GetWinner() != Team.BLUE) { return; }
 
         if (GameManager.Instance.CurrentGameMode == GameMode.FRIEND) { return; }
 
