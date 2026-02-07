@@ -13,7 +13,7 @@ public class AchievementsScreen : BaseScreen
 
     [SerializeField] private GameObject achievementDisplayPrefab;
 
-    private void Awake()
+    private void Start()
     {
         currentScreen = GetComponent<UIScreen>();
 

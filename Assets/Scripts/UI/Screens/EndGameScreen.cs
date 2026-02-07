@@ -80,7 +80,12 @@ public class EndGameScreen : BaseScreen
     }
     public override void OnGameObjectDisabled()
     {
+        GameObject popupAchievements = transform.Find("PopupAchievements").gameObject;
 
+        for (int i = popupAchievements.transform.childCount-1; i >= 0 ; i--)
+        {
+            Destroy(popupAchievements.transform.GetChild(i).gameObject);
+        }
     }
 
     public void CheckAchievements()
