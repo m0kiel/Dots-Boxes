@@ -1,0 +1,3 @@
+C:\Users\lokyy\Desktop\Repos Git\MaliyoPrototype\Library\PramData\AndroidApplicationController\Cache\com.m0kiapps.DotsBoxesSabotage\gradle-project\unityLibrary\src\main\cpp\CMakeLists.txt
+C:\Users\lokyy\Desktop\Repos Git\MaliyoPrototype\Library\PramData\AndroidApplicationController\Cache\com.m0kiapps.DotsBoxesSabotage\gradle-project\unityLibrary\src\main\cpp\FramePacing\CMakeLists.txt
+C:\Users\lokyy\Desktop\Repos Git\MaliyoPrototype\Library\PramData\AndroidApplicationController\Cache\com.m0kiapps.DotsBoxesSabotage\gradle-project\unityLibrary\src\main\cpp\GameActivity\CMakeLists.txt
