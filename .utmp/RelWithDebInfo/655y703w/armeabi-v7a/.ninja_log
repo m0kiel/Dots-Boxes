@@ -1,0 +1,23 @@
+# ninja log v5
+6	2619	7932935646090054	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	5a1e81e16c8c3975
+38	185	7932935621795431	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	3f141b334b155b76
+19	1982	7932935639518697	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	eca7c6c97eaf7762
+187	398	7932935623700228	C:/Users/lokyy/Desktop/Repos Git/MaliyoPrototype/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/655y703w/obj/armeabi-v7a/libswappywrapper.so	b415f4cc062b196b
+15	1962	7932935639262859	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	5ecfe6be64e58fb1
+10	2312	7932935642700669	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	9bf99d1d83e11b8c
+28	2166	7932935640923060	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	a81e01d3bef36301
+33	2468	7932935644507264	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	8fc81e32084bcc50
+0	2168	7932935640812677	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	990618cf0c626a31
+23	2554	7932935645454919	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	10f6a1ad5e866caf
+2619	2713	7932935647094164	C:/Users/lokyy/Desktop/Repos Git/MaliyoPrototype/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/655y703w/obj/armeabi-v7a/libgame.so	7879844e54fccd95
+43	155	7932938606228013	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	3f141b334b155b76
+156	257	7932938607211586	C:/Users/lokyy/Desktop/Repos Git/MaliyoPrototype/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/655y703w/obj/armeabi-v7a/libswappywrapper.so	b415f4cc062b196b
+19	734	7932938612006791	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	eca7c6c97eaf7762
+33	762	7932938612277731	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	5ecfe6be64e58fb1
+5	763	7932938612307834	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	990618cf0c626a31
+28	787	7932938612553672	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	a81e01d3bef36301
+10	805	7932938612744312	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	9bf99d1d83e11b8c
+38	859	7932938613282771	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	8fc81e32084bcc50
+23	939	7932938614086697	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	10f6a1ad5e866caf
+15	987	7932938614567004	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	5a1e81e16c8c3975
+987	1055	7932938615265838	C:/Users/lokyy/Desktop/Repos Git/MaliyoPrototype/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/655y703w/obj/armeabi-v7a/libgame.so	7879844e54fccd95

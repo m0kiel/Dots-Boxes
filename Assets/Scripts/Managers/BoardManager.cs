@@ -8,7 +8,7 @@ public class BoardManager : Singleton<BoardManager>
 
     private List<List<GameObject>> board = new();
 
-    private float tileZoom = 3.5f;
+    private float tileZoom = 3f;
 
     public void InitBoard()
     {

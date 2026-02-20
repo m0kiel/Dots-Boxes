@@ -1,0 +1,1 @@
+C:\Users\lokyy\Desktop\Repos Git\MaliyoPrototype\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\cxx\RelWithDebInfo\655y703w\obj\armeabi-v7a
